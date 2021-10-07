@@ -11,8 +11,8 @@ import Alamofire
 
 class PlacesRequest {
     
-    func retrieveNearbyPlaces(_ completion: @escaping (Swift.Result<Place, Error>) -> Void) {
-        let url = "https://api.foursquare.com/v2/venues/explore?near=Cairo,EG&client_id=\(Constants.client_id)&client_secret=\(Constants.client_secret)&v=\(Constants.v)"
+    func retrieveNearbyPlaces(latitude: Double, longitude: Double,_ completion: @escaping (Swift.Result<Place, Error>) -> Void) {
+        let url = "https://api.foursquare.com/v2/venues/explore?ll=\(latitude),\(longitude)&client_id=\(Constants.client_id)&client_secret=\(Constants.client_secret)&v=\(Constants.v)"
         
         Alamofire.request(url).responseJSON(completionHandler: { response in
             switch response.result {
