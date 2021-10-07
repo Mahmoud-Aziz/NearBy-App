@@ -48,9 +48,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Near By" id="RIe-L5-Nsa">
-                        <barButtonItem key="rightBarButtonItem" title="Realtime" id="Ifj-kV-oSc">
+                        <barButtonItem key="rightBarButtonItem" title="Single Update" id="Ifj-kV-oSc">
                             <connections>
-                                <action selector="realTimeButtonPressed:" destination="BYZ-38-t0r" id="yzz-TV-ojM"/>
+                                <action selector="realTimeButtonPressed:" destination="BYZ-38-t0r" id="PBu-b0-oII"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
