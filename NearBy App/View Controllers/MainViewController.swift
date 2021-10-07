@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import JGProgressHUD
 
 class MainViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class MainViewController: UIViewController {
     
     var places: [GroupItem]?
     var locationManager: CLLocationManager?
-    var isEditingMode = false
+    let hud = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction private func realTimeButtonPressed(_ sender: UIBarButtonItem) {
+        hud.show(in: view)
         switch realTimeButton.title {
         case Constants.singleMood:
             sender.title = Constants.realtimeMood
@@ -43,6 +45,7 @@ class MainViewController: UIViewController {
             UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
         default:
             print("")
+            hud.dismiss(animated: true)
         }
     }
     
@@ -50,6 +53,7 @@ class MainViewController: UIViewController {
     func configureCell() {
         let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
         mainTableView.register(nib, forCellReuseIdentifier: Constants.mainTableViewCellIdentifier)
+        mainTableView.rowHeight = 140
     }
     
     func configureLocationManager() {
@@ -59,6 +63,7 @@ class MainViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             locationManager?.delegate = self
             locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            hud.show(in: view)
             locationManager?.requestLocation()
         }
     }
@@ -93,13 +98,15 @@ extension MainViewController: CLLocationManagerDelegate {
         
         let req = PlacesRequest()
         
-        req.retrieveNearbyPlaces(latitude: locationValue.latitude, longitude: locationValue.longitude,{ places in
+        req.retrieveNearbyPlaces(latitude: locationValue.latitude, longitude: locationValue.longitude,{ [weak self] places in
             switch places {
             case .success(let successResults):
-                self.places = successResults.response?.groups?[0].items
+                self?.places = successResults.response?.groups?[0].items
+                self?.hud.dismiss(animated: true)
                 print("Fetched places suscessfully!")
-                self.mainTableView.reloadData()
+                self?.mainTableView.reloadData()
             case .failure(let error):
+                self?.hud.dismiss(animated: true)
                 print(error.localizedDescription)
             }
         })
