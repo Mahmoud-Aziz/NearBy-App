@@ -22,6 +22,10 @@ class MainViewController: UIViewController {
         configureLocationManager()
     }
     
+    @IBAction private func realTimeButtonPressed(_ sender: UIBarButtonItem) {
+        locationManager?.startMonitoringSignificantLocationChanges()
+    }
+
     func configureCell() {
         let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
         mainTableView.register(nib, forCellReuseIdentifier: Constants.mainTableViewCellIdentifier)
