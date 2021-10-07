@@ -15,15 +15,15 @@ struct Place: Codable {
 }
 
 // MARK: - Meta
-struct Meta: Codable {
-    let code: Int?
-    let requestID: String?
-
-    enum CodingKeys: String, CodingKey {
-        case code
-        case requestID = "requestId"
-    }
-}
+//struct Meta: Codable {
+//    let code: Int?
+//    let requestID: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case code
+//        case requestID = "requestId"
+//    }
+//}
 
 // MARK: - Response
 struct Response: Codable {
@@ -57,19 +57,19 @@ struct Response: Codable {
 //}
 
 // MARK: - Center
-struct Center: Codable {
-    let lat, lng: Double?
-}
+//struct Center: Codable {
+//    let lat, lng: Double?
+//}
 
 // MARK: - Geometry
-struct Geometry: Codable {
-    let bounds: Bounds?
-}
+//struct Geometry: Codable {
+//    let bounds: Bounds?
+//}
 
 // MARK: - Bounds
-struct Bounds: Codable {
-    let ne, sw: Center?
-}
+//struct Bounds: Codable {
+//    let ne, sw: Center?
+//}
 
 // MARK: - Group
 struct Group: Codable {
@@ -99,8 +99,8 @@ struct Flags: Codable {
 
 // MARK: - Reasons
 struct Reasons: Codable {
-    let count: Int?
-    let items: [ReasonsItem]?
+//    let count: Int?
+//    let items: [ReasonsItem]?
 }
 
 // MARK: - ReasonsItem
@@ -126,17 +126,13 @@ struct ReasonsItem: Codable {
 struct Venue: Codable {
     let id, name: String?
     let location: Location?
-//    let categories: [Category]?
+
 //    let photos: Photos?
 //    let venuePage: VenuePage?
 }
 
 // MARK: - Category
-//struct Category: Codable {
-//    let id, name, pluralName, shortName: String?
-//    let icon: Icon?
-//    let primary: Bool?
-//}
+
 
 // MARK: - Icon
 //struct Icon: Codable {
@@ -187,17 +183,6 @@ struct LabeledLatLng: Codable {
 //    case القاهرة = "القاهرة"
 //}
 
-// MARK: - Photos
-//struct Photos: Codable {
-//    let count: Int?
-//}
-
-// MARK: - VenuePage
-//struct VenuePage: Codable {
-//    let id: String?
-//}
-
-// MARK: - SuggestedFilters
 //struct SuggestedFilters: Codable {
 //    let header: String?
 //    let filters: [Filter]?
@@ -207,4 +192,3 @@ struct LabeledLatLng: Codable {
 //struct Filter: Codable {
 //    let name, key: String?
 //}
-
