@@ -126,17 +126,13 @@ struct ReasonsItem: Codable {
 struct Venue: Codable {
     let id, name: String?
     let location: Location?
-    let categories: [Category]?
+
 //    let photos: Photos?
 //    let venuePage: VenuePage?
 }
 
 // MARK: - Category
-struct Category: Codable {
-    let id, name, pluralName, shortName: String?
-//    let icon: Icon?
-    let primary: Bool?
-}
+
 
 // MARK: - Icon
 //struct Icon: Codable {
@@ -186,18 +182,7 @@ struct LabeledLatLng: Codable {
 //    case cairoGovernorate = "Cairo Governorate"
 //    case القاهرة = "القاهرة"
 //}
-//
-//// MARK: - Photos
-//struct Photos: Codable {
-//    let count: Int?
-//}
-//
-//// MARK: - VenuePage
-//struct VenuePage: Codable {
-//    let id: String?
-//}
-//
-//// MARK: - SuggestedFilters
+
 //struct SuggestedFilters: Codable {
 //    let header: String?
 //    let filters: [Filter]?
@@ -207,4 +192,3 @@ struct LabeledLatLng: Codable {
 //struct Filter: Codable {
 //    let name, key: String?
 //}
-//
