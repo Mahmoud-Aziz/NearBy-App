@@ -13,16 +13,19 @@ class MainViewController: UIViewController {
     
     @IBOutlet private weak var realTimeButton: UIBarButtonItem!
     @IBOutlet private weak var mainTableView: UITableView!
+    @IBOutlet private weak var errorImage: UIImageView!
+    @IBOutlet private weak var errorLabel: UILabel!
     
     var places: [GroupItem]?
     var locationManager: CLLocationManager?
-    let hud = JGProgressHUD()
-    
+    let hud = JGProgressHUD(style: .dark)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCell()
         configureLocationManager()
-        
+        errorLabel.isHidden = true
+        errorImage.isHidden = true
         guard let barButtonSavedTitle = Constants.barButtonSavedTitle else {
            return realTimeButton.title = Constants.realtimeMood
         }
@@ -36,11 +39,14 @@ class MainViewController: UIViewController {
             sender.title = Constants.realtimeMood
             locationManager?.stopMonitoringSignificantLocationChanges()
             locationManager?.requestLocation()
+            handleNetworkBackToWork()
             print("Single Mood Activated")
             UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
         case Constants.realtimeMood:
             sender.title = Constants.singleMood
             locationManager?.startMonitoringSignificantLocationChanges()
+            hud.dismiss(animated: true)
+            handleNetworkBackToWork()
             print("Realtime Mood Activated")
             UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
         default:
@@ -66,6 +72,29 @@ class MainViewController: UIViewController {
             hud.show(in: view)
             locationManager?.requestLocation()
         }
+    }
+    
+    func handleError() {
+        self.mainTableView.isHidden = true
+        errorLabel.isHidden = false
+        errorImage.isHidden = false
+        self.errorImage.image = UIImage(named: "cloud-off")
+        self.errorLabel.text = Constants.errorMessage
+    }
+    
+    func handleNetworkError() {
+        self.mainTableView.isHidden = true
+        errorLabel.isHidden = false
+        errorImage.isHidden = false
+        self.errorImage.image = UIImage(named: "exclamation")
+        self.errorLabel.text = Constants.networkErrorMessage
+
+    }
+    
+    func handleNetworkBackToWork() {
+        mainTableView.isHidden = false
+        errorImage.isHidden = true
+        errorLabel.isHidden = true
     }
 }
 
@@ -97,7 +126,6 @@ extension MainViewController: CLLocationManagerDelegate {
         print("locations = \(locationValue.latitude) \(locationValue.longitude)")
         
         let req = PlacesRequest()
-        
         req.retrieveNearbyPlaces(latitude: locationValue.latitude, longitude: locationValue.longitude,{ [weak self] places in
             switch places {
             case .success(let successResults):
@@ -107,6 +135,7 @@ extension MainViewController: CLLocationManagerDelegate {
                 self?.mainTableView.reloadData()
             case .failure(let error):
                 self?.hud.dismiss(animated: true)
+                self?.handleNetworkError()
                 print(error.localizedDescription)
             }
         })
@@ -116,10 +145,10 @@ extension MainViewController: CLLocationManagerDelegate {
         if let error = error as? CLError, error.code == .denied {
             manager.stopMonitoringSignificantLocationChanges()
             print("error retrieving location \(error)")
-            
+            handleError()
             return
         }
-        // Notify the user of any errors.
+            handleError()
     }
 }
 
