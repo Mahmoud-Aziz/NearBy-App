@@ -37,13 +37,31 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="XaF-qF-SjK"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholdertext.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pWV-Cl-FZA">
+                                <rect key="frame" x="157" y="399" width="100" height="97.5"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0xq-8X-hSh"/>
+                                    <constraint firstAttribute="height" constant="100" id="gPo-Kr-Rn2"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7X-zC-CBf">
+                                <rect key="frame" x="185" y="498" width="44" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QWe-7u-hjD" secondAttribute="trailing" id="6ph-Bn-Dbq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QWe-7u-hjD" secondAttribute="bottom" id="GDa-K2-YGi"/>
+                            <constraint firstItem="pWV-Cl-FZA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GP2-jo-uHD"/>
+                            <constraint firstItem="B7X-zC-CBf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="410" id="YnX-zQ-a2p"/>
                             <constraint firstItem="QWe-7u-hjD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="azw-nP-tqY"/>
+                            <constraint firstItem="B7X-zC-CBf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hkj-YL-2Re"/>
+                            <constraint firstItem="pWV-Cl-FZA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rXY-5X-XEI"/>
                             <constraint firstItem="QWe-7u-hjD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="u6z-UX-1JN"/>
                         </constraints>
                     </view>
@@ -55,6 +73,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="errorImage" destination="pWV-Cl-FZA" id="vYt-fn-mfo"/>
+                        <outlet property="errorLabel" destination="B7X-zC-CBf" id="PwT-C7-bZ9"/>
                         <outlet property="mainTableView" destination="QWe-7u-hjD" id="d1H-jN-ReB"/>
                         <outlet property="realTimeButton" destination="Ifj-kV-oSc" id="4UZ-cf-meE"/>
                     </connections>
@@ -83,6 +103,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="placeholdertext.fill" catalog="system" width="80" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
