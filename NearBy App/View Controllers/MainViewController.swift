@@ -16,14 +16,11 @@ class MainViewController: UIViewController {
     var places: [GroupItem]?
     var locationManager: CLLocationManager?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCell()
         configureLocationManager()
     }
-    
-    
     
     func configureCell() {
         let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
@@ -31,13 +28,13 @@ class MainViewController: UIViewController {
     }
     
     func configureLocationManager() {
-        self.locationManager = CLLocationManager()
-        self.locationManager?.requestAlwaysAuthorization()
-        self.locationManager?.requestWhenInUseAuthorization()
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager?.delegate = self
             locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager?.startMonitoringSignificantLocationChanges()
+            locationManager?.requestLocation()
         }
     }
 }
@@ -75,6 +72,7 @@ extension MainViewController: CLLocationManagerDelegate {
             switch places {
             case .success(let successResults):
                 self.places = successResults.response?.groups?[0].items
+                print("sucesssssssssssss")
                 self.mainTableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)

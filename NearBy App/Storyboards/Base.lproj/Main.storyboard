@@ -48,7 +48,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Near By" id="RIe-L5-Nsa">
-                        <barButtonItem key="rightBarButtonItem" title="Realtime" id="Ifj-kV-oSc"/>
+                        <barButtonItem key="rightBarButtonItem" title="Realtime" id="Ifj-kV-oSc">
+                            <connections>
+                                <action selector="realTimeButtonPressed:" destination="BYZ-38-t0r" id="yzz-TV-ojM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="QWe-7u-hjD" id="d1H-jN-ReB"/>
