@@ -15,17 +15,32 @@ class MainViewController: UIViewController {
     
     var places: [GroupItem]?
     var locationManager: CLLocationManager?
-
+    var isEditingMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCell()
         configureLocationManager()
+        realTimeButton.title = Constants.realtimeMood
     }
     
     @IBAction private func realTimeButtonPressed(_ sender: UIBarButtonItem) {
-        locationManager?.startMonitoringSignificantLocationChanges()
+        switch realTimeButton.title {
+        case Constants.singleMood:
+            sender.title = Constants.realtimeMood
+            locationManager?.stopMonitoringSignificantLocationChanges()
+            locationManager?.requestLocation()
+            print("Single Mood Activated")
+        case Constants.realtimeMood:
+            sender.title = Constants.singleMood
+            locationManager?.startMonitoringSignificantLocationChanges()
+            print("Realtime Mood Activated")
+        default:
+            print("")
+        }
     }
-
+    
+    
     func configureCell() {
         let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
         mainTableView.register(nib, forCellReuseIdentifier: Constants.mainTableViewCellIdentifier)
@@ -65,33 +80,33 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let lastLocation = locations.last
-
+        
         guard let locationValue: CLLocationCoordinate2D = lastLocation?.coordinate else
         { return }
         print("locations = \(locationValue.latitude) \(locationValue.longitude)")
         
         let req = PlacesRequest()
-
+        
         req.retrieveNearbyPlaces(latitude: locationValue.latitude, longitude: locationValue.longitude,{ places in
             switch places {
             case .success(let successResults):
                 self.places = successResults.response?.groups?[0].items
-                print("sucesssssssssssss")
+                print("Fetched places suscessfully!")
                 self.mainTableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         })
-        }
-     
+    }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-       if let error = error as? CLError, error.code == .denied {
-          manager.stopMonitoringSignificantLocationChanges()
-           print("error retrieving location \(error)")
-
-          return
-       }
-       // Notify the user of any errors.
+        if let error = error as? CLError, error.code == .denied {
+            manager.stopMonitoringSignificantLocationChanges()
+            print("error retrieving location \(error)")
+            
+            return
+        }
+        // Notify the user of any errors.
     }
-    }
+}
 
