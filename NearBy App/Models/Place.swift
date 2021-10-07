@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Welcome
 struct Place: Codable {
-    let meta: Meta?
+//    let meta: Meta?
     let response: Response?
 
 }
@@ -27,34 +27,34 @@ struct Meta: Codable {
 
 // MARK: - Response
 struct Response: Codable {
-    let suggestedFilters: SuggestedFilters?
-    let geocode: Geocode?
-    let headerLocation, headerFullLocation, headerLocationGranularity: String?
-    let totalResults: Int?
-    let suggestedBounds: Bounds?
+//    let suggestedFilters: SuggestedFilters?
+//    let geocode: Geocode?
+//    let headerLocation, headerFullLocation, headerLocationGranularity: String?
+//    let totalResults: Int?
+//    let suggestedBounds: Bounds?
     let groups: [Group]?
 }
 
 // MARK: - Geocode
-struct Geocode: Codable {
-    let what, geocodeWhere: String?
-    let center: Center?
-    let displayString: String?
-    let cc: Cc?
-    let geometry: Geometry?
-    let slug, longID: String?
-
-    enum CodingKeys: String, CodingKey {
-        case what
-        case geocodeWhere = "where"
-        case center, displayString, cc, geometry, slug
-        case longID = "longId"
-    }
-}
-
-enum Cc: String, Codable {
-    case eg = "EG"
-}
+//struct Geocode: Codable {
+//    let what, geocodeWhere: String?
+//    let center: Center?
+//    let displayString: String?
+//    let cc: Cc?
+//    let geometry: Geometry?
+//    let slug, longID: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case what
+//        case geocodeWhere = "where"
+//        case center, displayString, cc, geometry, slug
+//        case longID = "longId"
+//    }
+//}
+//
+//enum Cc: String, Codable {
+//    case eg = "EG"
+//}
 
 // MARK: - Center
 struct Center: Codable {
@@ -73,21 +73,22 @@ struct Bounds: Codable {
 
 // MARK: - Group
 struct Group: Codable {
-    let type, name: String?
+//    let type, name: String?
     let items: [GroupItem]?
 }
 
 // MARK: - GroupItem
 struct GroupItem: Codable {
-    let reasons: Reasons?
+//    let reasons: Reasons?
     let venue: Venue?
-    let referralID: String?
-    let flags: Flags?
+//    let referralID: String?
+//    let flags: Flags?
 
     enum CodingKeys: String, CodingKey {
-        case reasons, venue
-        case referralID = "referralId"
-        case flags
+//        case reasons
+        case venue
+//        case referralID = "referralId"
+//        case flags
     }
 }
 
@@ -125,32 +126,32 @@ struct ReasonsItem: Codable {
 struct Venue: Codable {
     let id, name: String?
     let location: Location?
-    let categories: [Category]?
-    let photos: Photos?
-    let venuePage: VenuePage?
+//    let categories: [Category]?
+//    let photos: Photos?
+//    let venuePage: VenuePage?
 }
 
 // MARK: - Category
-struct Category: Codable {
-    let id, name, pluralName, shortName: String?
-    let icon: Icon?
-    let primary: Bool?
-}
+//struct Category: Codable {
+//    let id, name, pluralName, shortName: String?
+//    let icon: Icon?
+//    let primary: Bool?
+//}
 
 // MARK: - Icon
-struct Icon: Codable {
-    let iconPrefix: String?
-    let suffix: Suffix?
-
-    enum CodingKeys: String, CodingKey {
-        case iconPrefix = "prefix"
-        case suffix
-    }
-}
-
-enum Suffix: String, Codable {
-    case png = ".png"
-}
+//struct Icon: Codable {
+//    let iconPrefix: String?
+//    let suffix: Suffix?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case iconPrefix = "prefix"
+//        case suffix
+//    }
+//}
+//
+//enum Suffix: String, Codable {
+//    case png = ".png"
+//}
 
 // MARK: - Location
 struct Location: Codable {
@@ -158,7 +159,7 @@ struct Location: Codable {
     let lat, lng: Double?
     let labeledLatLngs: [LabeledLatLng]?
     let postalCode: String?
-    let cc: Cc?
+//    let cc: Cc?
     let city: String?
 //    let state: State?
 //    let country: Country?
@@ -187,23 +188,23 @@ struct LabeledLatLng: Codable {
 //}
 
 // MARK: - Photos
-struct Photos: Codable {
-    let count: Int?
-}
+//struct Photos: Codable {
+//    let count: Int?
+//}
 
 // MARK: - VenuePage
-struct VenuePage: Codable {
-    let id: String?
-}
+//struct VenuePage: Codable {
+//    let id: String?
+//}
 
 // MARK: - SuggestedFilters
-struct SuggestedFilters: Codable {
-    let header: String?
-    let filters: [Filter]?
-}
-
-// MARK: - Filter
-struct Filter: Codable {
-    let name, key: String?
-}
+//struct SuggestedFilters: Codable {
+//    let header: String?
+//    let filters: [Filter]?
+//}
+//
+//// MARK: - Filter
+//struct Filter: Codable {
+//    let name, key: String?
+//}
 

@@ -7,29 +7,16 @@
 
 import UIKit
 
-
 class MainViewController: UIViewController {
     
     @IBOutlet private weak var realTimeButton: UIBarButtonItem!
     @IBOutlet private weak var mainTableView: UITableView!
     
     var places: [GroupItem]?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCell()
-        
-        let req = PlacesRequest()
-        
-        req.retrieveNearbyPlaces({ places in
-            switch places {
-            case .success(let successResults):
-                self.places = successResults.response?.groups?[0].items
-                self.mainTableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        })
     }
     
     func configureCell() {
@@ -53,3 +40,4 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
 }
+

@@ -12,7 +12,7 @@ enum PlacesRouter: URLRequestConvertible {
     
     static let baseURL = "https://api.foursquare.com/v2"
     
-    case nearbyPaces
+    case nearbyPaces(latitude: Double, longitude: Double)
     
     var httpMethod: String {
         switch self {
@@ -30,13 +30,8 @@ enum PlacesRouter: URLRequestConvertible {
     
     var parameters: [String:Any]? {
         switch self {
-        case .nearbyPaces:
-            return [
-                "near":"Chicago,IL",
-                "client_id":"P2ZU2QEY10AW4KEIBO2MZFLK40X5V2FNWKYWVRGIWH1RBIMH",
-                "client_secret":"AWSIUJMOKTE3YUKERJ325I2C4EUR0PFMJTPCI4O0MCAJVAEE",
-                "v":"20211031"
-            ]
+        case let .nearbyPaces(latitude, longitude):
+            return requestParameters(latitude: latitude, longitude: longitude)
         }
     }
     
@@ -52,6 +47,16 @@ enum PlacesRouter: URLRequestConvertible {
         case .nearbyPaces:
             return JSONEncoding.default
         }
+    }
+    
+    private func requestParameters(latitude: Double, longitude: Double) -> [String: Any] {
+        return [
+            "near":"\(latitude),\(longitude)",
+            "client_id":"P2ZU2QEY10AW4KEIBO2MZFLK40X5V2FNWKYWVRGIWH1RBIMH",
+            "client_secret":"AWSIUJMOKTE3YUKERJ325I2C4EUR0PFMJTPCI4O0MCAJVAEE",
+            "v":"20211031",
+            "llAcc":"10000.0"
+            ]
     }
     
     func asURLRequest() throws -> URLRequest {
