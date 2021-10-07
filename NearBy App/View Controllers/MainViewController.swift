@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: UIViewController {
     
@@ -14,14 +15,27 @@ class MainViewController: UIViewController {
     
     var places: [GroupItem]?
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCell()
+
     }
     
     func configureCell() {
         let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
         mainTableView.register(nib, forCellReuseIdentifier: Constants.mainTableViewCellIdentifier)
+    }
+    
+    func configureLocationManager() {
+        self.locationManager = CLLocationManager()
+        self.locationManager?.requestAlwaysAuthorization()
+        self.locationManager?.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager?.startMonitoringSignificantLocationChanges()
+        }
     }
 }
 
@@ -40,4 +54,5 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
 }
+
 
