@@ -21,7 +21,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         configureCell()
         configureLocationManager()
-        realTimeButton.title = Constants.realtimeMood
+        
+        guard let barButtonSavedTitle = Constants.barButtonSavedTitle else {
+           return realTimeButton.title = Constants.realtimeMood
+        }
+        realTimeButton.title = barButtonSavedTitle
     }
     
     @IBAction private func realTimeButtonPressed(_ sender: UIBarButtonItem) {
@@ -31,10 +35,12 @@ class MainViewController: UIViewController {
             locationManager?.stopMonitoringSignificantLocationChanges()
             locationManager?.requestLocation()
             print("Single Mood Activated")
+            UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
         case Constants.realtimeMood:
             sender.title = Constants.singleMood
             locationManager?.startMonitoringSignificantLocationChanges()
             print("Realtime Mood Activated")
+            UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
         default:
             print("")
         }

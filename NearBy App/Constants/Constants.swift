@@ -15,4 +15,5 @@ struct Constants {
     static let v = "20211031"
     static let realtimeMood = "Realtime"
     static let singleMood  = "Single Mood"
+    static let barButtonSavedTitle = UserDefaults.standard.value(forKey: "barButtonTitle") as? String
 }
