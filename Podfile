@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '8.0'
+# platform :ios, '9.3'
 
 target 'NearBy App' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -8,6 +8,8 @@ target 'NearBy App' do
   # Pods for NearBy App
 
   pod 'Alamofire', '> 4.9'
+  pod 'JGProgressHUD'
+
 
 
   target 'NearBy AppTests' do
