@@ -16,4 +16,6 @@ struct Constants {
     static let realtimeMood = "Realtime"
     static let singleMood  = "Single Mood"
     static let barButtonSavedTitle = UserDefaults.standard.value(forKey: "barButtonTitle") as? String
+    static let errorMessage = "Something went wrong!"
+    static let networkErrorMessage = "No data Found!"
 }
