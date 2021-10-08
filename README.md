@@ -10,11 +10,11 @@ NearBy App is a simple app to suggest nearby places for the user based on his cu
   
   -Realtime Mood: App updates seamlessly every time the user changes his place by 500 miters. 
   
-  -App fetch nearby places using CoreLocation then uses Foursquare Explore API to fetch places based on those coordinates. 
+  -App fetches nearby places using CoreLocation then uses Foursquare Explore API to fetch places based on those coordinates. 
   
-  -Main screen is simple only contains: TableView contains Place's name, Address and photo. 
+  -Main screen is simple only contains: A TableView which contains Place's name, address, and photo.
   
-  -User uses bar button item to switch between moodes.
+  -User uses bar button item to switch between moods.
   
 
 ## Pods
