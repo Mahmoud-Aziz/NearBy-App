@@ -16,35 +16,100 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var errorImage: UIImageView!
     @IBOutlet private weak var errorLabel: UILabel!
     
-    var places: [GroupItem]?
-    var locationManager: CLLocationManager?
-    let hud = JGProgressHUD(style: .dark)
-
+    private let hud = JGProgressHUD(style: .dark)
+    private var mainTableViewDataSource: MainTableViewDataSource?
+    private var viewModel: mainViewModelProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCell()
-        configureLocationManager()
-        errorLabel.isHidden = true
-        errorImage.isHidden = true
+        self.viewModel = MainViewModel()
+        
+        mainTableViewDataSource = MainTableViewDataSource(viewModel: viewModel)
+        mainTableView.dataSource = mainTableViewDataSource
+        
+        viewModel?.locationManager = CLLocationManager()
+        setLocationManagerDelegate()
+        viewModel?.configureLocationManager()
+        setViewModelClosures()
+
+        configureMainTableViewCell()
+        setInitialUiState()
+        setBarButtonDefaultTitle()
+    }
+    
+    //MARK: Helpers methods
+    
+    private func setBarButtonDefaultTitle() {
         guard let barButtonSavedTitle = Constants.barButtonSavedTitle else {
-           return realTimeButton.title = Constants.realtimeMood
+            return realTimeButton.title = Constants.realtimeMood
         }
         realTimeButton.title = barButtonSavedTitle
     }
+    
+    private func configureMainTableViewCell() {
+        let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
+        mainTableView.register(nib, forCellReuseIdentifier: Constants.mainTableViewCellIdentifier)
+        mainTableView.rowHeight = 140
+    }
+    
+    private func setInitialUiState() {
+        errorLabel.isHidden = true
+        errorImage.isHidden = true
+    }
+    
+    private func setLocationManagerDelegate() {
+        viewModel?.locationManager?.delegate = self
+        
+    }
+    
+    private func setViewModelClosures() {
+        reloadTableView()
+        showSpinner()
+        hideSpinner()
+        handleErrorViewModel()
+        handleNetworkErrorViewModel()
+    }
+    
+    //MARK: Handle errors methods
+    
+    private func handleError() {
+        self.mainTableView.isHidden = true
+        errorLabel.isHidden = false
+        errorImage.isHidden = false
+        self.errorImage.image = UIImage(named: "cloud-off")
+        self.errorLabel.text = Constants.errorMessage
+    }
+    
+    private func handleNetworkError() {
+        self.mainTableView.isHidden = true
+        errorLabel.isHidden = false
+        errorImage.isHidden = false
+        self.errorImage.image = UIImage(named: "exclamation")
+        self.errorLabel.text = Constants.networkErrorMessage
+        
+    }
+    
+    private func handleNetworkBackToWork() {
+        mainTableView.isHidden = false
+        errorImage.isHidden = true
+        errorLabel.isHidden = true
+    }
+    
+    //MARK: Bar button item toggle action
     
     @IBAction private func realTimeButtonPressed(_ sender: UIBarButtonItem) {
         hud.show(in: view)
         switch realTimeButton.title {
         case Constants.singleMood:
             sender.title = Constants.realtimeMood
-            locationManager?.stopMonitoringSignificantLocationChanges()
-            locationManager?.requestLocation()
+            viewModel?.locationManager?.stopMonitoringSignificantLocationChanges()
+            viewModel?.locationManager?.requestLocation()
             handleNetworkBackToWork()
             print("Single Mood Activated")
             UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
         case Constants.realtimeMood:
             sender.title = Constants.singleMood
-            locationManager?.startMonitoringSignificantLocationChanges()
+            viewModel?.locationManager?.startMonitoringSignificantLocationChanges()
             hud.dismiss(animated: true)
             handleNetworkBackToWork()
             print("Realtime Mood Activated")
@@ -54,101 +119,65 @@ class MainViewController: UIViewController {
             hud.dismiss(animated: true)
         }
     }
-    
-    
-    func configureCell() {
-        let nib = UINib(nibName: Constants.mainTableViewCellNib, bundle: nil)
-        mainTableView.register(nib, forCellReuseIdentifier: Constants.mainTableViewCellIdentifier)
-        mainTableView.rowHeight = 140
-    }
-    
-    func configureLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.requestAlwaysAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager?.delegate = self
-            locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            hud.show(in: view)
-            locationManager?.requestLocation()
-        }
-    }
-    
-    func handleError() {
-        self.mainTableView.isHidden = true
-        errorLabel.isHidden = false
-        errorImage.isHidden = false
-        self.errorImage.image = UIImage(named: "cloud-off")
-        self.errorLabel.text = Constants.errorMessage
-    }
-    
-    func handleNetworkError() {
-        self.mainTableView.isHidden = true
-        errorLabel.isHidden = false
-        errorImage.isHidden = false
-        self.errorImage.image = UIImage(named: "exclamation")
-        self.errorLabel.text = Constants.networkErrorMessage
-
-    }
-    
-    func handleNetworkBackToWork() {
-        mainTableView.isHidden = false
-        errorImage.isHidden = true
-        errorLabel.isHidden = true
-    }
 }
 
-extension MainViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.places?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainTableViewCellIdentifier, for: indexPath) as! MainTableViewCell
-        cell.label?.text = self.places?[indexPath.row].venue?.name
-        return cell
-    }
-}
-
-extension MainViewController: UITableViewDelegate {
-    
-}
 
 //MARK: Location Manager delegate methods
 
 extension MainViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         let lastLocation = locations.last
-        
-        guard let locationValue: CLLocationCoordinate2D = lastLocation?.coordinate else
-        { return }
-        print("locations = \(locationValue.latitude) \(locationValue.longitude)")
-        
-        let req = PlacesRequest()
-        req.retrieveNearbyPlaces(latitude: locationValue.latitude, longitude: locationValue.longitude,{ [weak self] places in
-            switch places {
-            case .success(let successResults):
-                self?.places = successResults.response?.groups?[0].items
-                self?.hud.dismiss(animated: true)
-                print("Fetched places suscessfully!")
-                self?.mainTableView.reloadData()
-            case .failure(let error):
-                self?.hud.dismiss(animated: true)
-                self?.handleNetworkError()
-                print(error.localizedDescription)
-            }
-        })
+        guard let location: CLLocationCoordinate2D = lastLocation?.coordinate else { return }
+        let latitude = location.latitude
+        let longitude = location.longitude
+        print("locations = \(latitude) \(longitude)")
+        viewModel?.getNearbyPlaces(latitude: latitude, longitude: longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let error = error as? CLError, error.code == .denied {
             manager.stopMonitoringSignificantLocationChanges()
-            print("error retrieving location \(error)")
+            print("error fetching location \(error)")
             handleError()
             return
         }
-            handleError()
+        handleError()
     }
 }
 
+extension MainViewController {
+    
+    //MARK: ViewModel closures implementation
+    
+    private func reloadTableView() {
+        self.viewModel?.reloadMainTableView = {[weak self] in
+            self?.mainTableView.reloadData()
+        }
+    }
+    
+    private func showSpinner() {
+        self.viewModel?.showSpinner = { [weak self] in
+            guard let self = self else { return }
+            self.hud.show(in: self.view)
+        }
+    }
+    
+    private func hideSpinner() {
+        self.viewModel?.hideSpinner = { [weak self] in
+            self?.hud.dismiss(animated: true)
+        }
+    }
+    
+    private func handleErrorViewModel() {
+        self.viewModel?.handleErrorViewModel = { [weak self] in
+            self?.handleError()
+        }
+    }
+    
+    private func handleNetworkErrorViewModel() {
+        self.viewModel?.handleNetworkErrorViewModel  = { [weak self] in
+            self?.handleNetworkError()
+        }
+    }
+}
