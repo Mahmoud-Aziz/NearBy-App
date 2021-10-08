@@ -23,7 +23,9 @@ class MainTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.mainTableViewCellIdentifier, for: indexPath) as! MainTableViewCell
-        cell.label?.text = viewModel?.place(index: indexPath.row).venue?.name
+        cell.photoURL = viewModel?.getPhotoURL()
+        cell.placeNamelabel?.text = viewModel?.place(index: indexPath.row).venue?.name
+        cell.placeAddressLabel?.text = viewModel?.place(index: indexPath.row).venue?.location?.address
         return cell
     }
 }
