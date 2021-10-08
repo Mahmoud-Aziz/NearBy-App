@@ -18,28 +18,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="576" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTw-sp-2dn">
-                        <rect key="frame" x="25" y="59.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTw-sp-2dn">
+                        <rect key="frame" x="148" y="30" width="101" height="25"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="JnN-bw-L4t">
+                        <rect key="frame" x="20" y="10" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="oK5-3k-Kzq"/>
+                            <constraint firstAttribute="height" constant="120" id="sbZ-Wa-4mr"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9K-LD-Ox7">
+                        <rect key="frame" x="148" y="63" width="108" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="CTw-sp-2dn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="l29-UN-v3Z"/>
-                    <constraint firstItem="CTw-sp-2dn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="m6r-aY-AyO"/>
+                    <constraint firstItem="JnN-bw-L4t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="7cX-7V-kpD"/>
+                    <constraint firstItem="CTw-sp-2dn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="MHQ-EH-W5s"/>
+                    <constraint firstItem="CTw-sp-2dn" firstAttribute="leading" secondItem="JnN-bw-L4t" secondAttribute="trailing" constant="8" symbolic="YES" id="UaH-7P-KJm"/>
+                    <constraint firstItem="b9K-LD-Ox7" firstAttribute="top" secondItem="CTw-sp-2dn" secondAttribute="bottom" constant="8" symbolic="YES" id="Vwb-we-d9s"/>
+                    <constraint firstItem="JnN-bw-L4t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="Y4d-87-Y81"/>
+                    <constraint firstItem="b9K-LD-Ox7" firstAttribute="leading" secondItem="JnN-bw-L4t" secondAttribute="trailing" constant="8" symbolic="YES" id="rRi-Il-Z8q"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" red="0.2156862745" green="0.50196078430000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="label" destination="CTw-sp-2dn" id="OYb-Y8-xoM"/>
+                <outlet property="placeAddressLabel" destination="b9K-LD-Ox7" id="N1U-DF-ded"/>
+                <outlet property="placeImageView" destination="JnN-bw-L4t" id="Spc-DL-djE"/>
+                <outlet property="placeNamelabel" destination="CTw-sp-2dn" id="zLK-4y-aUo"/>
             </connections>
-            <point key="canvasLocation" x="323.1884057971015" y="110.82589285714285"/>
+            <point key="canvasLocation" x="323.1884057971015" y="110.49107142857143"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="photo-placeholder" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
