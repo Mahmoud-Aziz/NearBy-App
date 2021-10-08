@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
         setLocationManagerDelegate()
         viewModel?.configureLocationManager()
         setViewModelClosures()
-
+        
         configureMainTableViewCell()
         setInitialUiState()
         setBarButtonDefaultTitle()
@@ -106,14 +106,14 @@ class MainViewController: UIViewController {
             viewModel?.locationManager?.requestLocation()
             handleNetworkBackToWork()
             print("Single Mood Activated")
-            UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
+            UserDefaults.standard.set(sender.title, forKey: Constants.barButtonTitleKey)
         case Constants.realtimeMood:
             sender.title = Constants.singleMood
             viewModel?.locationManager?.startMonitoringSignificantLocationChanges()
             hud.dismiss(animated: true)
             handleNetworkBackToWork()
             print("Realtime Mood Activated")
-            UserDefaults.standard.set(sender.title, forKey: "barButtonTitle")
+            UserDefaults.standard.set(sender.title, forKey: Constants.barButtonTitleKey)
         default:
             print("")
             hud.dismiss(animated: true)
@@ -132,13 +132,13 @@ extension MainViewController: CLLocationManagerDelegate {
         let latitude = location.latitude
         let longitude = location.longitude
         print("locations = \(latitude) \(longitude)")
-        viewModel?.getNearbyPlaces(latitude: latitude, longitude: longitude)
+        viewModel?.getNearbyPlaces(latitude: 48.8566, longitude: 2.3522)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let error = error as? CLError, error.code == .denied {
             manager.stopMonitoringSignificantLocationChanges()
-            print("error fetching location \(error)")
+            print("Error fetching location \(error)")
             handleError()
             return
         }

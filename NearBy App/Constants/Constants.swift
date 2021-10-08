@@ -12,15 +12,9 @@ struct Constants {
     static let mainTableViewCellIdentifier = "MainTableViewCell"
     static let realtimeMood = "Realtime"
     static let singleMood  = "Single Mood"
-    static let barButtonSavedTitle = UserDefaults.standard.value(forKey: "barButtonTitle") as? String
+    static let barButtonTitleKey = "barButtonTitle"
+    static let barButtonSavedTitle = UserDefaults.standard.value(forKey: Constants.barButtonTitleKey) as? String
     static let errorMessage = "Something went wrong!"
     static let networkErrorMessage = "No data Found!"
 }
 
-
-struct NetworkConstants {
-    static let client_id = "P2ZU2QEY10AW4KEIBO2MZFLK40X5V2FNWKYWVRGIWH1RBIMH"
-    static let client_secret = "AWSIUJMOKTE3YUKERJ325I2C4EUR0PFMJTPCI4O0MCAJVAEE&v=20211031"
-    static let v = "20211031"
-    static let llAcc = "10000.0"
-}
