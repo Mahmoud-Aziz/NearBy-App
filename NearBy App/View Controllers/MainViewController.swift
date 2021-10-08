@@ -28,10 +28,12 @@ class MainViewController: UIViewController {
         mainTableView.dataSource = mainTableViewDataSource
         
         viewModel?.locationManager = CLLocationManager()
-        setLocationManagerDelegate()
         viewModel?.configureLocationManager()
-        setViewModelClosures()
         
+        setLocationManagerDelegate()
+        viewModel?.requestLocation()
+
+        setViewModelClosures()
         configureMainTableViewCell()
         setInitialUiState()
         setBarButtonDefaultTitle()
@@ -59,14 +61,12 @@ class MainViewController: UIViewController {
     
     private func setLocationManagerDelegate() {
         viewModel?.locationManager?.delegate = self
-        
     }
     
     private func setViewModelClosures() {
         reloadTableView()
         showSpinner()
         hideSpinner()
-        handleErrorViewModel()
         handleNetworkErrorViewModel()
     }
     
@@ -169,15 +169,10 @@ extension MainViewController {
         }
     }
     
-    private func handleErrorViewModel() {
-        self.viewModel?.handleErrorViewModel = { [weak self] in
-            self?.handleError()
-        }
-    }
-    
     private func handleNetworkErrorViewModel() {
         self.viewModel?.handleNetworkErrorViewModel  = { [weak self] in
             self?.handleNetworkError()
+            self?.hud.dismiss(animated: true)
         }
     }
 }

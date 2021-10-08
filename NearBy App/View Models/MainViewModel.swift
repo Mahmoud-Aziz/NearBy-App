@@ -14,7 +14,6 @@ protocol mainViewModelProtocol {
     var showSpinner: (() -> ())? { get set }
     var hideSpinner: (() -> ())? { get set }
     var handleNetworkErrorViewModel: (() -> ())? { get set }
-    var handleErrorViewModel: (() -> ())? { get set }
     
     func configureLocationManager()
     func getNearbyPlaces(latitude: Double, longitude: Double)
@@ -22,21 +21,21 @@ protocol mainViewModelProtocol {
     func place(index: Int) -> GroupItem
     func venueID(index: Int) -> String
     func getPhotoURL() -> String
+    func requestLocation()
 }
 
 class MainViewModel {
     var locationManager: CLLocationManager?
-    var places: [GroupItem] = []
-    var photoPrefix: String?
-    var photoSuffix: String?
-    var photoWidth: Int?
-    var photoHeight: Int?
-    var photoURL: String?
+    private var places: [GroupItem] = []
+    private var photoPrefix: String?
+    private var photoSuffix: String?
+    private var photoWidth: Int?
+    private var photoHeight: Int?
+    private var photoURL: String?
     var reloadMainTableView: (() -> ())?
     var showSpinner: (() -> ())?
     var hideSpinner: (() -> ())?
     var handleNetworkErrorViewModel: (() -> ())?
-    var handleErrorViewModel: (() -> ())?
 }
 
 
@@ -45,6 +44,9 @@ extension MainViewModel: mainViewModelProtocol {
     func configureLocationManager() {
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.requestAlwaysAuthorization()
+    }
+    
+    func requestLocation() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             showSpinner?()
@@ -60,14 +62,16 @@ extension MainViewModel: mainViewModelProtocol {
                 guard let places = successResults.response?.groups?[0].items else {
                     return
                 }
-                self?.places = places
-                self?.hideSpinner?()
-                self?.getPlacePhoto(id: places[0].venue?.id ?? "No ID")
-                self?.reloadMainTableView?()
+                guard let self = self else { return }
+                self.places = places
+                self.hideSpinner?()
+                self.getPlacePhoto(id: places[0].venue?.id ?? "No ID")
+                self.reloadMainTableView?()
                 print("Fetched places suscessfully from Foursquare API!")
             case .failure(let error):
-                self?.hideSpinner?()
-                self?.handleNetworkErrorViewModel?()
+                guard let self = self else { return }
+                self.hideSpinner?()
+                self.handleNetworkErrorViewModel?()
                 print(error.localizedDescription)
             }
         })
@@ -78,20 +82,20 @@ extension MainViewModel: mainViewModelProtocol {
         request.getPlacePhoto(id: id, { [weak self] response in
             switch response {
             case .success(let photo):
-                
+                guard let self = self else { return }
                 guard let suffix = photo.response?.photos?.items?[0].suffix,
                       let prefix = photo.response?.photos?.items?[0].itemPrefix,
                       let width = photo.response?.photos?.items?[0].width,
                       let height = photo.response?.photos?.items?[0].height else { return }
                 
-                self?.photoSuffix = suffix
-                self?.photoPrefix = prefix
-                self?.photoWidth = width
-                self?.photoHeight = height
+                self.photoSuffix = suffix
+                self.photoPrefix = prefix
+                self.photoWidth = width
+                self.photoHeight = height
                 
-                let photoURL = self?.createPhotoURL(suffix: suffix, prefix: prefix, width: width, height: height)
-                self?.photoURL = photoURL
-                self?.reloadMainTableView?()
+                let photoURL = self.createPhotoURL(suffix: suffix, prefix: prefix, width: width, height: height)
+                self.photoURL = photoURL
+                self.reloadMainTableView?()
                 print("Fetched photo \(photo)")
             case .failure(let error):
                 print("Error getting photo \(error.localizedDescription)")
@@ -104,7 +108,8 @@ extension MainViewModel: mainViewModelProtocol {
     }
     
     func placesCount() -> Int? {
-        self.places.count
+        print("places.count \(places.count)")
+        return self.places.count
     }
     
     func place(index: Int) -> GroupItem {
