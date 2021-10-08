@@ -22,6 +22,8 @@
 		629B1868271053F400BBA535 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B1867271053F400BBA535 /* MainViewModel.swift */; };
 		629B186B2710545D00BBA535 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B186A2710545D00BBA535 /* LocationService.swift */; };
 		629B1870271078B500BBA535 /* MainTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B186F271078B500BBA535 /* MainTableViewDataSource.swift */; };
+		629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187127108ACC00BBA535 /* PhotoRequest.swift */; };
+		629B187427108E3600BBA535 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187327108E3600BBA535 /* Photo.swift */; };
 		62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4A270E014E00685975 /* PlacesRouter.swift */; };
 		62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4C270E015600685975 /* PlacesRequest.swift */; };
 		62C2EB50270E034400685975 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4F270E034400685975 /* Place.swift */; };
@@ -70,6 +72,8 @@
 		629B1867271053F400BBA535 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		629B186A2710545D00BBA535 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		629B186F271078B500BBA535 /* MainTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSource.swift; sourceTree = "<group>"; };
+		629B187127108ACC00BBA535 /* PhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequest.swift; sourceTree = "<group>"; };
+		629B187327108E3600BBA535 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		62C2EB4A270E014E00685975 /* PlacesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRouter.swift; sourceTree = "<group>"; };
 		62C2EB4C270E015600685975 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
 		62C2EB4F270E034400685975 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -261,8 +265,8 @@
 		629B186C2710547300BBA535 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				62C2EB4A270E014E00685975 /* PlacesRouter.swift */,
-				62C2EB4C270E015600685975 /* PlacesRequest.swift */,
+				629B18772710B1EB00BBA535 /* Places */,
+				629B18782710B1F300BBA535 /* Photo */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -283,10 +287,28 @@
 			path = Datasource;
 			sourceTree = "<group>";
 		};
+		629B18772710B1EB00BBA535 /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				62C2EB4A270E014E00685975 /* PlacesRouter.swift */,
+				62C2EB4C270E015600685975 /* PlacesRequest.swift */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
+		629B18782710B1F300BBA535 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				629B187127108ACC00BBA535 /* PhotoRequest.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		62C2EB4E270E033D00685975 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				62C2EB4F270E034400685975 /* Place.swift */,
+				629B187327108E3600BBA535 /* Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -542,7 +564,9 @@
 				621EEAB1270DB45300EB672B /* MainViewController.swift in Sources */,
 				621EEA7B270DA54700EB672B /* AppDelegate.swift in Sources */,
 				621EEAB5270DB63B00EB672B /* MainTableViewCell.swift in Sources */,
+				629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */,
 				62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */,
+				629B187427108E3600BBA535 /* Photo.swift in Sources */,
 				629B186B2710545D00BBA535 /* LocationService.swift in Sources */,
 				629B1868271053F400BBA535 /* MainViewModel.swift in Sources */,
 				62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */,

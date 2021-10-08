@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainTableViewCell: UITableViewCell {
-
-    @IBOutlet  weak var label: UILabel?
-
     
+    @IBOutlet weak var placeNamelabel: UILabel!
+    @IBOutlet weak var placeAddressLabel: UILabel!
+    @IBOutlet private weak var placeImageView: UIImageView!
+    
+    var photoURL: String? {
+        didSet {
+            self.placeImageView.kf.setImage(with: URL(string: photoURL ?? ""))
+        }
+    }
 }
