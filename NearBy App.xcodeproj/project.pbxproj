@@ -12,7 +12,6 @@
 		621EEA82270DA54700EB672B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621EEA80270DA54700EB672B /* Main.storyboard */; };
 		621EEA84270DA54A00EB672B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621EEA83270DA54A00EB672B /* Assets.xcassets */; };
 		621EEA87270DA54A00EB672B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621EEA85270DA54A00EB672B /* LaunchScreen.storyboard */; };
-		621EEA92270DA54A00EB672B /* NearBy_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621EEA91270DA54A00EB672B /* NearBy_AppTests.swift */; };
 		621EEA9C270DA54B00EB672B /* NearBy_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621EEA9B270DA54B00EB672B /* NearBy_AppUITests.swift */; };
 		621EEA9E270DA54B00EB672B /* NearBy_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621EEA9D270DA54B00EB672B /* NearBy_AppUITestsLaunchTests.swift */; };
 		621EEAB1270DB45300EB672B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621EEAB0270DB45300EB672B /* MainViewController.swift */; };
@@ -24,6 +23,7 @@
 		629B1870271078B500BBA535 /* MainTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B186F271078B500BBA535 /* MainTableViewDataSource.swift */; };
 		629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187127108ACC00BBA535 /* PhotoRequest.swift */; };
 		629B187427108E3600BBA535 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187327108E3600BBA535 /* Photo.swift */; };
+		629B187B2710C98100BBA535 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187A2710C98100BBA535 /* MainViewModelTests.swift */; };
 		62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4A270E014E00685975 /* PlacesRouter.swift */; };
 		62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4C270E015600685975 /* PlacesRequest.swift */; };
 		62C2EB50270E034400685975 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4F270E034400685975 /* Place.swift */; };
@@ -61,7 +61,6 @@
 		621EEA86270DA54A00EB672B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		621EEA88270DA54A00EB672B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		621EEA8D270DA54A00EB672B /* NearBy AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NearBy AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		621EEA91270DA54A00EB672B /* NearBy_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBy_AppTests.swift; sourceTree = "<group>"; };
 		621EEA97270DA54A00EB672B /* NearBy AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NearBy AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		621EEA9B270DA54B00EB672B /* NearBy_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBy_AppUITests.swift; sourceTree = "<group>"; };
 		621EEA9D270DA54B00EB672B /* NearBy_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBy_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		629B186F271078B500BBA535 /* MainTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSource.swift; sourceTree = "<group>"; };
 		629B187127108ACC00BBA535 /* PhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequest.swift; sourceTree = "<group>"; };
 		629B187327108E3600BBA535 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		629B187A2710C98100BBA535 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		62C2EB4A270E014E00685975 /* PlacesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRouter.swift; sourceTree = "<group>"; };
 		62C2EB4C270E015600685975 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
 		62C2EB4F270E034400685975 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		621EEA90270DA54A00EB672B /* NearBy AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				621EEA91270DA54A00EB672B /* NearBy_AppTests.swift */,
+				629B187A2710C98100BBA535 /* MainViewModelTests.swift */,
 			);
 			path = "NearBy AppTests";
 			sourceTree = "<group>";
@@ -396,6 +396,7 @@
 					};
 					621EEA8C270DA54A00EB672B = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
 						TestTargetID = 621EEA76270DA54700EB672B;
 					};
 					621EEA96270DA54A00EB672B = {
@@ -580,7 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				621EEA92270DA54A00EB672B /* NearBy_AppTests.swift in Sources */,
+				629B187B2710C98100BBA535 /* MainViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -812,6 +813,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SKQ6J4JJN6;
@@ -826,6 +828,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MahmoudAziz.NearBy-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearBy App.app/NearBy App";
@@ -838,6 +841,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SKQ6J4JJN6;
