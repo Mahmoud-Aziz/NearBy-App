@@ -7,9 +7,9 @@ target 'NearBy App' do
 
   # Pods for NearBy App
 
-  pod 'Alamofire', '> 4.9'
-  pod 'JGProgressHUD'
-  pod 'Kingfisher', '> 4.0'
+  pod 'Alamofire', '4.9.0'
+  pod 'JGProgressHUD', '2.1.0'
+  pod 'Kingfisher', '4.10.1'
 
 
 

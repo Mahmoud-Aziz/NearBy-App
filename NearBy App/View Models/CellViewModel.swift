@@ -34,7 +34,8 @@ class CellViewModel {
                 let prefix = item?.itemPrefix
                 let width = item?.width
                 let height = item?.height
-                let urlString = "\(prefix ?? "")" + "\(width ?? 0)x\(height ?? 0)" + "\(suffix ?? "")"
+                guard let prefix = prefix,let suffix = suffix, let width = width, let height = height else { return }
+                let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
                 self?.url = URL(string: urlString)
                 self?.reloadImageView?()
                 print("Fetched photo successfully")
