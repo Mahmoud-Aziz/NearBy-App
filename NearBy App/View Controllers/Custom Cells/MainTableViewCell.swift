@@ -12,6 +12,7 @@ class MainTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var placeNamelabel: UILabel!
     @IBOutlet private weak var placeAddressLabel: UILabel!
+    @IBOutlet private weak var placeCategoryLabel: UILabel!
     @IBOutlet private weak var placeImageView: UIImageView!
     
     var viewModel: CellViewModel? {
@@ -22,6 +23,7 @@ class MainTableViewCell: UITableViewCell {
             viewModel?.getPlacePhoto()
             placeNamelabel.text = viewModel?.name
             placeAddressLabel.text = viewModel?.address
+            placeCategoryLabel.text = viewModel?.placeCategory
         }
     }
     

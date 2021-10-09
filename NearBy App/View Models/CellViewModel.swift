@@ -13,13 +13,15 @@ class CellViewModel {
     let name: String
     let address: String
     let id: String
+    let placeCategory: String
     var url: URL?
     var reloadImageView: (() -> ())?
     
-    init(name: String, address: String, id: String, url: URL? = nil, reloadImageView: (() -> ())? = nil) {
+    init(name: String, address: String, id: String,placeCategory: String, url: URL? = nil, reloadImageView: (() -> ())? = nil) {
         self.name = name
         self.address = address
         self.id = id
+        self.placeCategory = placeCategory
         self.url = url
         self.reloadImageView = reloadImageView
     }

@@ -18,7 +18,6 @@ protocol MainViewModelProtocol {
     func configureLocationManager()
     func getNearbyPlaces(latitude: Double, longitude: Double)
     func placesCount() -> Int?
-    func place(index: Int) -> GroupItem
     func requestLocation()
     func populateCell(index: Int) -> CellViewModel
 }
@@ -26,6 +25,7 @@ protocol MainViewModelProtocol {
 class MainViewModel {
     var locationManager: CLLocationManager?
     private var places: [GroupItem] = []
+    private var categories: [Category] = []
     var reloadMainTableView: (() -> ())?
     var showSpinner: (() -> ())?
     var hideSpinner: (() -> ())?
@@ -55,8 +55,10 @@ extension MainViewModel: MainViewModelProtocol {
             switch places {
             case .success(let successResults):
                 guard let places = successResults.response?.groups?[0].items else { return }
+                guard let categories = places[0].venue?.categories else { return }
                 guard let self = self else { return }
                 self.places = places
+                self.categories = categories
                 self.hideSpinner?()
                 self.reloadMainTableView?()
                 print("Fetched places suscessfully from Foursquare API!")
@@ -73,7 +75,7 @@ extension MainViewModel: MainViewModelProtocol {
         return self.places.count
     }
     
-    func place(index: Int) -> GroupItem {
+    private func place(index: Int) -> GroupItem {
         places[index]
     }
     
@@ -82,7 +84,8 @@ extension MainViewModel: MainViewModelProtocol {
         let name = place.venue?.name ?? ""
         let address = place.venue?.location?.address ?? ""
         let id = place.venue?.id ?? ""
-        let cellViewModel = CellViewModel(name: name, address: address, id: id)
+        let shortName = place.venue?.categories?[0].shortName ?? ""
+        let cellViewModel = CellViewModel(name: name, address: address, id: id, placeCategory: shortName)
         return cellViewModel
     }
 }

@@ -39,6 +39,11 @@ struct Flags: Codable {
 struct Venue: Codable {
     let id, name: String?
     let location: Location?
+    let categories: [Category]?
+}
+// MARK: - Category
+struct Category: Codable {
+    let shortName: String?
 }
 
 // MARK: - Location
