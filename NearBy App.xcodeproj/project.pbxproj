@@ -24,6 +24,8 @@
 		629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187127108ACC00BBA535 /* PhotoRequest.swift */; };
 		629B187427108E3600BBA535 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187327108E3600BBA535 /* Photo.swift */; };
 		629B187B2710C98100BBA535 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187A2710C98100BBA535 /* MainViewModelTests.swift */; };
+		629B18842711275E00BBA535 /* FoursquareExplore.json in Resources */ = {isa = PBXBuildFile; fileRef = 629B18832711275E00BBA535 /* FoursquareExplore.json */; };
+		629B18872711279B00BBA535 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B18862711279B00BBA535 /* XCTestCase.swift */; };
 		62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4A270E014E00685975 /* PlacesRouter.swift */; };
 		62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4C270E015600685975 /* PlacesRequest.swift */; };
 		62C2EB50270E034400685975 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4F270E034400685975 /* Place.swift */; };
@@ -74,6 +76,8 @@
 		629B187127108ACC00BBA535 /* PhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequest.swift; sourceTree = "<group>"; };
 		629B187327108E3600BBA535 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		629B187A2710C98100BBA535 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		629B18832711275E00BBA535 /* FoursquareExplore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FoursquareExplore.json; sourceTree = "<group>"; };
+		629B18862711279B00BBA535 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		62C2EB4A270E014E00685975 /* PlacesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRouter.swift; sourceTree = "<group>"; };
 		62C2EB4C270E015600685975 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
 		62C2EB4F270E034400685975 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 		621EEA90270DA54A00EB672B /* NearBy AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				629B18852711276B00BBA535 /* Extentions */,
+				629B18822711274C00BBA535 /* Stubs */,
 				629B187A2710C98100BBA535 /* MainViewModelTests.swift */,
 			);
 			path = "NearBy AppTests";
@@ -302,6 +308,22 @@
 				629B187127108ACC00BBA535 /* PhotoRequest.swift */,
 			);
 			path = Photo;
+			sourceTree = "<group>";
+		};
+		629B18822711274C00BBA535 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				629B18832711275E00BBA535 /* FoursquareExplore.json */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		629B18852711276B00BBA535 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				629B18862711279B00BBA535 /* XCTestCase.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		62C2EB4E270E033D00685975 /* Models */ = {
@@ -441,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629B18842711275E00BBA535 /* FoursquareExplore.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629B18872711279B00BBA535 /* XCTestCase.swift in Sources */,
 				629B187B2710C98100BBA535 /* MainViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
