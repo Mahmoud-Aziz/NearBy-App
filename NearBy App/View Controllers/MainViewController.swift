@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = MainViewModel()
-        
+    
         mainTableViewDataSource = MainTableViewDataSource(viewModel: viewModel)
         mainTableView.dataSource = mainTableViewDataSource
         
@@ -132,7 +132,7 @@ extension MainViewController: CLLocationManagerDelegate {
         let latitude = location.latitude
         let longitude = location.longitude
         print("locations = \(latitude) \(longitude)")
-        viewModel?.getNearbyPlaces(latitude: 48.8566, longitude: 2.3522)
+        viewModel?.getNearbyPlaces(latitude: latitude, longitude: longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
