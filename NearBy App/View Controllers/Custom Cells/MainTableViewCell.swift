@@ -17,7 +17,7 @@ class MainTableViewCell: UITableViewCell {
     var viewModel: CellViewModel? {
         didSet {
             viewModel?.reloadImageView = { [weak self] in
-                self?.placeImageView.kf.setImage(with: self?.viewModel?.url)
+                self?.placeImageView.kf.setImage(with: self?.viewModel?.url, placeholder: UIImage(named: "photo-placeholder"))
             }
             viewModel?.getPlacePhoto()
             placeNamelabel.text = viewModel?.name
@@ -26,6 +26,6 @@ class MainTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        placeImageView.image = nil
+        placeImageView.image = UIImage(named: "photo-placeholder")
     }
 }
