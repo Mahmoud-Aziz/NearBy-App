@@ -10,7 +10,7 @@ import Foundation
 struct Constants {
     static let mainTableViewCellNib = "MainTableViewCell"
     static let mainTableViewCellIdentifier = "MainTableViewCell"
-    static let realtimeMood = "RealTime Mode"
+    static let realtimeMood = "Realtime Mode"
     static let singleMood  = "Single Mode"
     static let barButtonTitleKey = "barButtonTitle"
     static let barButtonSavedTitle = UserDefaults.standard.value(forKey: Constants.barButtonTitleKey) as? String
@@ -23,7 +23,3 @@ struct NetworkConstants {
     static let accuracy = "10000.0"
 }
 
-struct ApiSecretConstant {
-    static let clientID = "P2ZU2QEY10AW4KEIBO2MZFLK40X5V2FNWKYWVRGIWH1RBIMH"
-    static let clientSecret = "AWSIUJMOKTE3YUKERJ325I2C4EUR0PFMJTPCI4O0MCAJVAEE"
-}
