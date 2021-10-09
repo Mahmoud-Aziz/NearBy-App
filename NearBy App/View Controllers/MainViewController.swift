@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = MainViewModel()
-    
+        
         mainTableViewDataSource = MainTableViewDataSource(viewModel: viewModel)
         mainTableView.dataSource = mainTableViewDataSource
         
@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
         
         setLocationManagerDelegate()
         viewModel?.requestLocation()
-
+        
         setViewModelClosures()
         configureMainTableViewCell()
         setInitialUiState()
@@ -76,7 +76,7 @@ class MainViewController: UIViewController {
         self.mainTableView.isHidden = true
         errorLabel.isHidden = false
         errorImage.isHidden = false
-        self.errorImage.image = UIImage(named: "cloud-off")
+        self.errorImage.image = UIImage(named: Constants.errorImage)
         self.errorLabel.text = Constants.errorMessage
     }
     
@@ -84,7 +84,7 @@ class MainViewController: UIViewController {
         self.mainTableView.isHidden = true
         errorLabel.isHidden = false
         errorImage.isHidden = false
-        self.errorImage.image = UIImage(named: "exclamation")
+        self.errorImage.image = UIImage(named: Constants.networkErrorImage)
         self.errorLabel.text = Constants.networkErrorMessage
         
     }

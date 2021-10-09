@@ -10,23 +10,23 @@ import Alamofire
 
 enum PlacesRouter: URLRequestConvertible {
     
-    static let baseURL = "https://api.foursquare.com/v2"
+    static let baseURL = NetworkConstants.baseURL
     case nearbyPaces(latitude: Double, longitude: Double)
     case placePhoto(id: String)
     
     var httpMethod: String {
         switch self {
         case .nearbyPaces:
-            return "GET"
+            return NetworkConstants.git
         case .placePhoto:
-            return "GET"
+            return NetworkConstants.git
         }
     }
     
     var path: String {
         switch self {
         case .nearbyPaces:
-            return "/venues/explore"
+            return NetworkConstants.nearbyPlacesEndPoint
         case let .placePhoto(id):
             return "/venues/\(id)/photos"
         
