@@ -26,7 +26,7 @@
 		629B18842711275E00BBA535 /* FoursquareExplore.json in Resources */ = {isa = PBXBuildFile; fileRef = 629B18832711275E00BBA535 /* FoursquareExplore.json */; };
 		629B18872711279B00BBA535 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B18862711279B00BBA535 /* XCTestCase.swift */; };
 		629B18892711E2B400BBA535 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B18882711E2B400BBA535 /* CellViewModel.swift */; };
-		629B188D2712032100BBA535 /* APISecret Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B188C2712032100BBA535 /* APISecret Constants.swift */; };
+		629B188D2712032100BBA535 /* APISecretConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B188C2712032100BBA535 /* APISecretConstants.swift */; };
 		62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4A270E014E00685975 /* PlacesRouter.swift */; };
 		62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4C270E015600685975 /* PlacesRequest.swift */; };
 		62C2EB50270E034400685975 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4F270E034400685975 /* Place.swift */; };
@@ -79,7 +79,7 @@
 		629B18832711275E00BBA535 /* FoursquareExplore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FoursquareExplore.json; sourceTree = "<group>"; };
 		629B18862711279B00BBA535 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		629B18882711E2B400BBA535 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
-		629B188C2712032100BBA535 /* APISecret Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APISecret Constants.swift"; sourceTree = "<group>"; };
+		629B188C2712032100BBA535 /* APISecretConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISecretConstants.swift; sourceTree = "<group>"; };
 		62C2EB4A270E014E00685975 /* PlacesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRouter.swift; sourceTree = "<group>"; };
 		62C2EB4C270E015600685975 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
 		62C2EB4F270E034400685975 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				621EEABA270DBB7800EB672B /* Constants.swift */,
-				629B188C2712032100BBA535 /* APISecret Constants.swift */,
+				629B188C2712032100BBA535 /* APISecretConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -594,7 +594,7 @@
 				629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */,
 				62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */,
 				629B187427108E3600BBA535 /* Photo.swift in Sources */,
-				629B188D2712032100BBA535 /* APISecret Constants.swift in Sources */,
+				629B188D2712032100BBA535 /* APISecretConstants.swift in Sources */,
 				629B186B2710545D00BBA535 /* LocationService.swift in Sources */,
 				629B1868271053F400BBA535 /* MainViewModel.swift in Sources */,
 				62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */,
