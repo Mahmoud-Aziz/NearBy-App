@@ -17,6 +17,5 @@ class MainViewModelTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-    
 
 }
