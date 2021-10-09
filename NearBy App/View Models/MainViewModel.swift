@@ -22,7 +22,7 @@ protocol mainViewModelProtocol {
     func venueID(index: Int) -> String
     func getPhotoURL() -> Item
     func requestLocation()
-    func getPlacePhoto(id: String)
+    func populateCell(index: Int) -> CellViewModel
 }
 
 class MainViewModel {
@@ -37,7 +37,7 @@ class MainViewModel {
 
 
 extension MainViewModel: mainViewModelProtocol {
-    
+ 
     func configureLocationManager() {
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.requestAlwaysAuthorization()
@@ -73,19 +73,7 @@ extension MainViewModel: mainViewModelProtocol {
         })
     }
     
-    func getPlacePhoto(id: String) {
-        let request = PhotoRequest()
-        request.getPlacePhoto(id: id, { [weak self] response in
-            switch response {
-            case .success(let photo):
-                guard let self = self else { return }
-                self.item = photo.response?.photos?.items?[0]
-                print("Fetched photo \(photo)")
-            case .failure(let error):
-                print("Error getting photo \(error.localizedDescription)")
-            }
-        })
-    }
+    
     
     func placesCount() -> Int? {
         print("places.count \(places.count)")
@@ -103,4 +91,11 @@ extension MainViewModel: mainViewModelProtocol {
     func getPhotoURL() -> Item {
         self.item ?? Item(itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500)
     }
+    
+    func populateCell(index: Int) -> CellViewModel {
+        let place = self.place(index: index)
+        let cellViewModel = CellViewModel(name: place.venue?.name ?? "", address: place.venue?.location?.address ?? "", id: place.venue?.id ?? "")
+        return cellViewModel
+    }
+
 }

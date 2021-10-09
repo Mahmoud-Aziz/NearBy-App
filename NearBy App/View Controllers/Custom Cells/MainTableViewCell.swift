@@ -10,18 +10,22 @@ import Kingfisher
 
 class MainTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var placeNamelabel: UILabel!
-    @IBOutlet weak var placeAddressLabel: UILabel!
+    @IBOutlet private weak var placeNamelabel: UILabel!
+    @IBOutlet private weak var placeAddressLabel: UILabel!
     @IBOutlet private weak var placeImageView: UIImageView!
     
-    var photo: Item? {
+    var viewModel: CellViewModel? {
         didSet {
-            guard let suffix = photo?.suffix,
-                  let prefix = photo?.itemPrefix,
-                  let width = photo?.width,
-                  let height = photo?.height else { return }
-            let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
-            self.placeImageView.kf.setImage(with: URL(string: urlString))
+            viewModel?.reloadImageView = { [weak self] in
+                self?.placeImageView.kf.setImage(with: self?.viewModel?.url)
+            }
+            viewModel?.getPlacePhoto()
+            placeNamelabel.text = viewModel?.name
+            placeAddressLabel.text = viewModel?.address
         }
+    }
+    
+    override func prepareForReuse() {
+        placeImageView.image = nil
     }
 }

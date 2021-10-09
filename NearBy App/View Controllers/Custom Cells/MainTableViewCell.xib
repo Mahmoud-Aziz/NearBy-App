@@ -45,6 +45,7 @@
                     <constraint firstItem="CTw-sp-2dn" firstAttribute="leading" secondItem="JnN-bw-L4t" secondAttribute="trailing" constant="8" symbolic="YES" id="UaH-7P-KJm"/>
                     <constraint firstItem="b9K-LD-Ox7" firstAttribute="top" secondItem="CTw-sp-2dn" secondAttribute="bottom" constant="8" symbolic="YES" id="Vwb-we-d9s"/>
                     <constraint firstItem="JnN-bw-L4t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="Y4d-87-Y81"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CTw-sp-2dn" secondAttribute="trailing" constant="16" id="eSM-tz-8cD"/>
                     <constraint firstItem="b9K-LD-Ox7" firstAttribute="leading" secondItem="JnN-bw-L4t" secondAttribute="trailing" constant="8" symbolic="YES" id="rRi-Il-Z8q"/>
                 </constraints>
             </tableViewCellContentView>
@@ -59,7 +60,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="photo-placeholder" width="20" height="20"/>
+        <image name="photo-placeholder" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
