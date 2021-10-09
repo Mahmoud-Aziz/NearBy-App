@@ -1,6 +1,6 @@
 
 # NearBy App
-NearBy App is a simple app to suggest nearby places for the user based on his current location using Foursquare API and CoreLocation.
+NearBy App is a simple app that suggests nearby places for the user based on his current location using Foursquare API and CoreLocation.
 
 ## How to run the project
 
