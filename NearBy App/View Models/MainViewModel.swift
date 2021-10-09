@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-protocol mainViewModelProtocol {
+protocol MainViewModelProtocol {
     var locationManager: CLLocationManager? { get set }
     var reloadMainTableView: (() -> ())? { get set }
     var showSpinner: (() -> ())? { get set }
@@ -19,8 +19,6 @@ protocol mainViewModelProtocol {
     func getNearbyPlaces(latitude: Double, longitude: Double)
     func placesCount() -> Int?
     func place(index: Int) -> GroupItem
-    func venueID(index: Int) -> String
-    func getPhotoURL() -> Item
     func requestLocation()
     func populateCell(index: Int) -> CellViewModel
 }
@@ -28,15 +26,15 @@ protocol mainViewModelProtocol {
 class MainViewModel {
     var locationManager: CLLocationManager?
     private var places: [GroupItem] = []
-    private var item : Item?
     var reloadMainTableView: (() -> ())?
     var showSpinner: (() -> ())?
     var hideSpinner: (() -> ())?
     var handleNetworkErrorViewModel: (() -> ())?
 }
 
+//MARK: Main View Model Protocol Conformance
 
-extension MainViewModel: mainViewModelProtocol {
+extension MainViewModel: MainViewModelProtocol {
  
     func configureLocationManager() {
         locationManager?.requestWhenInUseAuthorization()
@@ -56,9 +54,7 @@ extension MainViewModel: mainViewModelProtocol {
         request.getNearbyPlaces(latitude: latitude, longitude: longitude,{ [weak self] places in
             switch places {
             case .success(let successResults):
-                guard let places = successResults.response?.groups?[0].items else {
-                    return
-                }
+                guard let places = successResults.response?.groups?[0].items else { return }
                 guard let self = self else { return }
                 self.places = places
                 self.hideSpinner?()
@@ -68,15 +64,12 @@ extension MainViewModel: mainViewModelProtocol {
                 guard let self = self else { return }
                 self.hideSpinner?()
                 self.handleNetworkErrorViewModel?()
-                print(error.localizedDescription)
+                print("Network Error: \(error.localizedDescription)")
             }
         })
     }
     
-    
-    
     func placesCount() -> Int? {
-        print("places.count \(places.count)")
         return self.places.count
     }
     
@@ -84,18 +77,12 @@ extension MainViewModel: mainViewModelProtocol {
         places[index]
     }
     
-    func venueID(index: Int) -> String {
-        places[index].venue?.id ?? ""
-    }
-    
-    func getPhotoURL() -> Item {
-        self.item ?? Item(itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500)
-    }
-    
     func populateCell(index: Int) -> CellViewModel {
         let place = self.place(index: index)
-        let cellViewModel = CellViewModel(name: place.venue?.name ?? "", address: place.venue?.location?.address ?? "", id: place.venue?.id ?? "")
+        let name = place.venue?.name ?? ""
+        let address = place.venue?.location?.address ?? ""
+        let id = place.venue?.id ?? ""
+        let cellViewModel = CellViewModel(name: name, address: address, id: id)
         return cellViewModel
     }
-
 }

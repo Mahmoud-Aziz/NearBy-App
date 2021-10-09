@@ -32,7 +32,7 @@ struct GroupItem: Codable {
 
 // MARK: - Flags
 struct Flags: Codable {
-    let outsideRadius: Bool?
+    let outsideRadius: Bool
 }
 
 // MARK: - Venue
@@ -54,5 +54,5 @@ struct Location: Codable {
 
 // MARK: - LabeledLatLng
 struct LabeledLatLng: Codable {
-    let lat, lng: Double?
+    let lat, lng: Double
 }

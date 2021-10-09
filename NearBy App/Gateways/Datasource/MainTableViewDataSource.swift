@@ -10,9 +10,9 @@ import UIKit
 
 class MainTableViewDataSource: NSObject, UITableViewDataSource {
     
-    var viewModel: mainViewModelProtocol?
+    var viewModel: MainViewModelProtocol?
     
-    init(viewModel: mainViewModelProtocol?) {
+    init(viewModel: MainViewModelProtocol?) {
         self.viewModel = viewModel
         super.init()
     }

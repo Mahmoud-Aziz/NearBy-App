@@ -63,8 +63,8 @@ enum PlacesRouter: URLRequestConvertible {
     private func requestPlacesParameters(latitude: Double, longitude: Double) -> [String: Any] {
         return [
             "near":"\(latitude),\(longitude)",
-            "client_id":"\(NetworkConstants.clientID)",
-            "client_secret":"\(NetworkConstants.clientSecret)",
+            "client_id":"\(ApiSecretConstant.clientID)",
+            "client_secret":"\(ApiSecretConstant.clientSecret)",
             "v":"\(NetworkConstants.version)",
             "llAcc":"\(NetworkConstants.accuracy)"
             ]
@@ -72,8 +72,8 @@ enum PlacesRouter: URLRequestConvertible {
     
     private func requestPhotoParameters() -> [String: Any] {
         return [
-            "client_id":"\(NetworkConstants.clientID)",
-            "client_secret":"\(NetworkConstants.clientSecret)",
+            "client_id":"\(ApiSecretConstant.clientID)",
+            "client_secret":"\(ApiSecretConstant.clientSecret)",
             "v":"\(NetworkConstants.version)",
             ]
     }

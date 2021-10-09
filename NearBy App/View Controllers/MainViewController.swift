@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     
     private let hud = JGProgressHUD(style: .dark)
     private var mainTableViewDataSource: MainTableViewDataSource?
-    private var viewModel: mainViewModelProtocol?
+    private var viewModel: MainViewModelProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
