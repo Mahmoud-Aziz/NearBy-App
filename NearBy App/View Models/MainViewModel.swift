@@ -79,7 +79,7 @@ extension MainViewModel: mainViewModelProtocol {
             switch response {
             case .success(let photo):
                 guard let self = self else { return }
-                self.item = photo.response?.photos?.items?[0] 
+                self.item = photo.response?.photos?.items?[0]
                 print("Fetched photo \(photo)")
             case .failure(let error):
                 print("Error getting photo \(error.localizedDescription)")
@@ -99,8 +99,8 @@ extension MainViewModel: mainViewModelProtocol {
     func venueID(index: Int) -> String {
         places[index].venue?.id ?? ""
     }
-
-        func getPhotoURL() -> Item {
-            self.item ?? Item(itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500)
-        }
+    
+    func getPhotoURL() -> Item {
+        self.item ?? Item(itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500)
+    }
 }
