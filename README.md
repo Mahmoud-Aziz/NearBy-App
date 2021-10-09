@@ -16,12 +16,5 @@ NearBy App is a simple app to suggest nearby places for the user based on his cu
   
   -User uses bar button item to switch between moods.
   
-
-## Pods
-
-* 'Alamofire', '> 4.9'
-* 'JGProgressHUD'
-* 'Kingfisher', '> 4.0'
-
-
+  
 ## Screenshots
