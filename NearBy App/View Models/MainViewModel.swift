@@ -20,18 +20,15 @@ protocol mainViewModelProtocol {
     func placesCount() -> Int?
     func place(index: Int) -> GroupItem
     func venueID(index: Int) -> String
-    func getPhotoURL() -> String
+    func getPhotoURL() -> Item
     func requestLocation()
+    func getPlacePhoto(id: String)
 }
 
 class MainViewModel {
     var locationManager: CLLocationManager?
     private var places: [GroupItem] = []
-    private var photoPrefix: String?
-    private var photoSuffix: String?
-    private var photoWidth: Int?
-    private var photoHeight: Int?
-    private var photoURL: String?
+    private var item : Item?
     var reloadMainTableView: (() -> ())?
     var showSpinner: (() -> ())?
     var hideSpinner: (() -> ())?
@@ -65,7 +62,6 @@ extension MainViewModel: mainViewModelProtocol {
                 guard let self = self else { return }
                 self.places = places
                 self.hideSpinner?()
-                self.getPlacePhoto(id: places[0].venue?.id ?? "No ID")
                 self.reloadMainTableView?()
                 print("Fetched places suscessfully from Foursquare API!")
             case .failure(let error):
@@ -83,28 +79,12 @@ extension MainViewModel: mainViewModelProtocol {
             switch response {
             case .success(let photo):
                 guard let self = self else { return }
-                guard let suffix = photo.response?.photos?.items?[0].suffix,
-                      let prefix = photo.response?.photos?.items?[0].itemPrefix,
-                      let width = photo.response?.photos?.items?[0].width,
-                      let height = photo.response?.photos?.items?[0].height else { return }
-                
-                self.photoSuffix = suffix
-                self.photoPrefix = prefix
-                self.photoWidth = width
-                self.photoHeight = height
-                
-                let photoURL = self.createPhotoURL(suffix: suffix, prefix: prefix, width: width, height: height)
-                self.photoURL = photoURL
-                self.reloadMainTableView?()
+                self.item = photo.response?.photos?.items?[0] 
                 print("Fetched photo \(photo)")
             case .failure(let error):
                 print("Error getting photo \(error.localizedDescription)")
             }
         })
-    }
-    
-    func createPhotoURL(suffix:String, prefix:String, width: Int, height:Int) -> String {
-        return "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
     }
     
     func placesCount() -> Int? {
@@ -119,8 +99,8 @@ extension MainViewModel: mainViewModelProtocol {
     func venueID(index: Int) -> String {
         places[index].venue?.id ?? ""
     }
-    
-    func getPhotoURL() -> String {
-        photoURL ?? ""
-    }
+
+        func getPhotoURL() -> Item {
+            self.item ?? Item(itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500)
+        }
 }
