@@ -35,7 +35,7 @@ class MainViewModel {
 //MARK: Main View Model Protocol Conformance
 
 extension MainViewModel: MainViewModelProtocol {
- 
+    
     func configureLocationManager() {
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.requestAlwaysAuthorization()
