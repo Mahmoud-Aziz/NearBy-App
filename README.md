@@ -14,7 +14,7 @@ Clone, and run ```$ make``` it will download necessary dependencies with precise
   
   * App consists of 2 modes.
   
-  * Single Model: Fetches user's location once.
+  * Single Mode: Fetches user's location once.
   
   * Real-Time Mode: Updates the list seamlessly once the user changes his location by 500 miters.
   
