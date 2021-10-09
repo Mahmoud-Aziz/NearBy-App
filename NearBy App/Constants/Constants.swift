@@ -22,3 +22,8 @@ struct NetworkConstants {
     static let version = "20211031"
     static let accuracy = "10000.0"
 }
+
+struct ApiSecretConstant {
+    static let clientID = "P2ZU2QEY10AW4KEIBO2MZFLK40X5V2FNWKYWVRGIWH1RBIMH"
+    static let clientSecret = "AWSIUJMOKTE3YUKERJ325I2C4EUR0PFMJTPCI4O0MCAJVAEE"
+}
