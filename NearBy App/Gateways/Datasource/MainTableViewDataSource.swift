@@ -18,7 +18,8 @@ class MainTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewModel?.placesCount() ?? 0
+        guard let numberOfRows = self.viewModel?.placesCount() else { return 0 }
+        return numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

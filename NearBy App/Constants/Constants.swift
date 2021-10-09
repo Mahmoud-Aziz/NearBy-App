@@ -25,7 +25,7 @@ struct NetworkConstants {
     static let version = "20211031"
     static let accuracy = "10000.0"
     static let baseURL = "https://api.foursquare.com/v2"
-    static let git = "GET"
+    static let get = "GET"
     static let nearbyPlacesEndPoint = "/venues/explore"
 }
 

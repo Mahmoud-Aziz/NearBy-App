@@ -17,9 +17,9 @@ enum PlacesRouter: URLRequestConvertible {
     var httpMethod: String {
         switch self {
         case .nearbyPaces:
-            return NetworkConstants.git
+            return NetworkConstants.get
         case .placePhoto:
-            return NetworkConstants.git
+            return NetworkConstants.get
         }
     }
     
