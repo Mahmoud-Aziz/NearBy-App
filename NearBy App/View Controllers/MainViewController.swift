@@ -30,15 +30,13 @@ class MainViewController: UIViewController {
         viewModel?.locationManager = CLLocationManager()
         viewModel?.configureLocationManager()
         
-        viewModel?.setLocationManagerDelegate()
-        
+        setLocationManagerDelegate()
         viewModel?.requestLocation()
         
         setViewModelClosures()
         configureMainTableViewCell()
         setInitialUiState()
         setBarButtonDefaultTitle()
-        
     }
     
     //MARK: Helpers methods
@@ -61,6 +59,10 @@ class MainViewController: UIViewController {
         errorImage.isHidden = true
     }
     
+    private func setLocationManagerDelegate() {
+        viewModel?.locationManager?.delegate = self
+    }
+    
     private func setViewModelClosures() {
         reloadTableView()
         showSpinner()
@@ -69,7 +71,15 @@ class MainViewController: UIViewController {
     }
     
     //MARK: Handle errors methods
-
+    
+    private func handleError() {
+        self.mainTableView.isHidden = true
+        errorLabel.isHidden = false
+        errorImage.isHidden = false
+        self.errorImage.image = UIImage(named: Constants.errorImage)
+        self.errorLabel.text = Constants.errorMessage
+    }
+    
     private func handleNetworkError() {
         self.mainTableView.isHidden = true
         errorLabel.isHidden = false
@@ -111,6 +121,31 @@ class MainViewController: UIViewController {
     }
 }
 
+
+//MARK: Location Manager delegate methods
+
+extension MainViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let lastLocation = locations.last
+        guard let location: CLLocationCoordinate2D = lastLocation?.coordinate else { return }
+        let latitude = location.latitude
+        let longitude = location.longitude
+        print("locations = \(latitude) \(longitude)")
+        viewModel?.getNearbyPlaces(latitude: latitude, longitude: longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if let error = error as? CLError, error.code == .denied {
+            manager.stopMonitoringSignificantLocationChanges()
+            print("Error fetching location \(error)")
+            handleError()
+            return
+        }
+        handleError()
+    }
+}
+
 extension MainViewController {
     
     //MARK: ViewModel closures implementation
@@ -138,16 +173,6 @@ extension MainViewController {
         self.viewModel?.handleNetworkErrorViewModel  = { [weak self] in
             self?.handleNetworkError()
             self?.hud.dismiss(animated: true)
-        }
-    }
-    
-    private func handleError() {
-        self.viewModel?.handleError = { [weak self] in
-            self?.mainTableView.isHidden = true
-            self?.errorLabel.isHidden = false
-            self?.errorImage.isHidden = false
-            self?.errorImage.image = UIImage(named: Constants.errorImage)
-            self?.errorLabel.text = Constants.errorMessage
         }
     }
 }

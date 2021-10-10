@@ -30,65 +30,20 @@ class CellViewModel {
         request.getPlacePhoto(id: id, { [weak self] response in
             switch response {
             case .success(let photo):
-//                let item = photo.response?.photos.items[0]
-                
-                //                let suffix = item.suffix
-                //                let prefix = item.itemPrefix
-                //                let width = item.width
-                //                let height = item.height
-                //                let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
-                
-                
-//                self?.url = URL(string: urlString)
-                
-                let path = Bundle.main.path(forResource: "StubPhoto", ofType: "json")
-               
-
-               guard let data = try? Data(contentsOf: URL(fileURLWithPath: path ?? ""), options: .mappedIfSafe) else {
-                   return
-               }
-                   
-               guard let itemData = try? JSONDecoder().decode(Photo.self, from: data) else {
-                   
-                   return }
-               
-               let item = itemData.response?.photos?.items?[0]
-
-               let suffix = item?.suffix
-               let prefix = item?.itemPrefix
-               let width = item?.width
-               let height = item?.height
-               let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
-                               self?.url = URL(string: urlString)
-
-                
+                let item = photo.response.photos.items[0]
+                let suffix = item.suffix
+                let prefix = item.itemPrefix
+                let width = item.width
+                let height = item.height
+//                guard let prefix = prefix,let suffix = suffix, let width = width, let height = height else { return }
+                let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
+                self?.url = URL(string: urlString)
                 self?.reloadImageView?()
                 print("Fetched photo successfully")
             case .failure(let error):
-                 let path = Bundle.main.path(forResource: "StubPhoto", ofType: "json")
-                
-
-                guard let data = try? Data(contentsOf: URL(fileURLWithPath: path ?? ""), options: .mappedIfSafe) else {
-                    return
-                }
-                    
-                guard let itemData = try? JSONDecoder().decode(Photo.self, from: data) else {
-                    
-                    return }
-                
-                let item = itemData.response?.photos?.items?[0]
-
-                let suffix = item?.suffix
-                let prefix = item?.itemPrefix
-                let width = item?.width
-                let height = item?.height
-                let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
-                                self?.url = URL(string: urlString)
-
-//                print("Error getting photo \(error.localizedDescription)")
+                print("Error getting photo \(error.localizedDescription)")
             }
         })
     }
-    
-    
 }
+
