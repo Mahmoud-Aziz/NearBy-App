@@ -9,22 +9,22 @@ import Foundation
 
 // MARK: - Welcome
 struct Place: Codable {
-    let response: Response?
+    let response: Response
 }
 
 // MARK: - Response
 struct Response: Codable {
-    let groups: [Group]?
+    let groups: [Group]
 }
 
 // MARK: - Group
 struct Group: Codable {
-    let items: [GroupItem]?
+    let items: [GroupItem]
 }
 
 // MARK: - GroupItem
 struct GroupItem: Codable {
-    let venue: Venue?
+    let venue: Venue
 }
     enum CodingKeys: String, CodingKey {
         case venue
@@ -37,23 +37,23 @@ struct Flags: Codable {
 
 // MARK: - Venue
 struct Venue: Codable {
-    let id, name: String?
-    let location: Location?
-    let categories: [Category]?
+    let id, name: String
+    let location: Location
+    let categories: [Category]
 }
 // MARK: - Category
 struct Category: Codable {
-    let shortName: String?
+    let shortName: String
 }
 
 // MARK: - Location
 struct Location: Codable {
-    let address: String?
-    let lat, lng: Double?
-    let labeledLatLngs: [LabeledLatLng]?
-    let postalCode: String?
-    let city: String?
-    let formattedAddress: [String]?
+    let address: String
+    let lat, lng: Double
+    let labeledLatLngs: [LabeledLatLng]
+    let postalCode: String
+    let city: String
+    let formattedAddress: [String]
     let crossStreet, neighborhood: String?
 }
 

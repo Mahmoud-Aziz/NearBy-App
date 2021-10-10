@@ -8,26 +8,26 @@
 import Foundation
 // MARK: - Welcome
 struct Photo: Codable {
-    let response: PhotoResponse?
+    let response: PhotoResponse
 }
 
 // MARK: - Response
 struct PhotoResponse: Codable {
-    let photos: Photos?
+    let photos: Photos
 }
 
 // MARK: - Photos
 struct Photos: Codable {
     let count: Int?
-    let items: [Item]?
-    let dupesRemoved: Int?
+    let items: [Item]
+    let dupesRemoved: Int
 }
 
 // MARK: - Item
 struct Item: Codable {
-    let itemPrefix: String?
-    let suffix: String?
-    let width, height: Int?
+    let itemPrefix: String
+    let suffix: String
+    let width, height: Int
 
     enum CodingKeys: String, CodingKey {
         case itemPrefix = "prefix"

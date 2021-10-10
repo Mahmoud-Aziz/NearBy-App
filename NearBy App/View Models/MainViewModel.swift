@@ -54,8 +54,8 @@ extension MainViewModel: MainViewModelProtocol {
         request.getNearbyPlaces(latitude: latitude, longitude: longitude,{ [weak self] places in
             switch places {
             case .success(let successResults):
-                guard let places = successResults.response?.groups?[0].items else { return }
-                guard let categories = places[0].venue?.categories else { return }
+                 let places = successResults.response.groups[0].items
+                 let categories = places[0].venue.categories
                 guard let self = self else { return }
                 self.places = places
                 self.categories = categories
@@ -81,10 +81,10 @@ extension MainViewModel: MainViewModelProtocol {
     
     func populateCell(index: Int) -> CellViewModel {
         let place = self.place(index: index)
-        let name = place.venue?.name ?? ""
-        let address = place.venue?.location?.address ?? ""
-        let id = place.venue?.id ?? ""
-        let shortName = place.venue?.categories?[0].shortName ?? ""
+        let name = place.venue.name
+        let address = place.venue.location.address
+        let id = place.venue.id
+        let shortName = place.venue.categories[0].shortName
         let cellViewModel = CellViewModel(name: name, address: address, id: id, placeCategory: shortName)
         return cellViewModel
     }
