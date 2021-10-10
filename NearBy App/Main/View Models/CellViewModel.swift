@@ -30,19 +30,27 @@ class CellViewModel {
         request.getPlacePhoto(id: id, { [weak self] response in
             switch response {
             case .success(let photo):
-                guard let item = photo.response?.photos?.items?[0] else { return }
-                let suffix = item.suffix
-                let prefix = item.itemPrefix
-                let width = item.width
-                let height = item.height
-                let urlString = "\(prefix ?? "")" + "\(width ?? 0)x\(height ?? 0)" + "\(suffix ?? "")"
-                self?.url = URL(string: urlString)
-                self?.reloadImageView?()
-                print("Fetched photo successfully")
+                self?.handleNetworkSuccess(result: photo)
             case .failure(let error):
-                print("Error getting photo \(error.localizedDescription)")
+                self?.handleNetworkFailure(error: error)
             }
         })
+    }
+    
+    private func handleNetworkSuccess(result: Photo) {
+        guard let item = result.response?.photos?.items?[0] else { return }
+        let suffix = item.suffix
+        let prefix = item.itemPrefix
+        let width = item.width
+        let height = item.height
+        let urlString = "\(prefix ?? "")" + "\(width ?? 0)x\(height ?? 0)" + "\(suffix ?? "")"
+        self.url = URL(string: urlString)
+        self.reloadImageView?()
+        print("Fetched photo successfully")
+    }
+    
+    private func handleNetworkFailure(error: Error) {
+        print("Error getting photo \(error.localizedDescription)")
     }
 }
 

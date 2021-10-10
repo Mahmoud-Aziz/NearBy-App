@@ -57,21 +57,27 @@ extension MainViewModel: MainViewModelProtocol {
         request.getNearbyPlaces(latitude: latitude, longitude: longitude,{ [weak self] places in
             switch places {
             case .success(let successResults):
-                 let places = successResults.response.groups[0].items
-                 let categories = places[0].venue.categories
-                guard let self = self else { return }
-                self.places = places
-                self.categories = categories
-                self.hideSpinner?()
-                self.reloadMainTableView?()
-                print("Fetched places suscessfully from Foursquare API!")
+                self?.handleNetworkSuccess(result: successResults)
             case .failure(let error):
-                guard let self = self else { return }
-                self.hideSpinner?()
-                self.handleNetworkErrorViewModel?()
-                print("Network Error: \(error.localizedDescription)")
+                self?.handleNetworkFailure(error: error)
             }
         })
+    }
+    
+    private func handleNetworkSuccess(result: Place) {
+        let places = result.response.groups[0].items
+        let categories = places[0].venue.categories
+       self.places = places
+       self.categories = categories
+       self.hideSpinner?()
+       self.reloadMainTableView?()
+       print("Fetched places suscessfully from Foursquare API!")
+    }
+    
+    private func handleNetworkFailure(error: Error) {
+        self.hideSpinner?()
+        self.handleNetworkErrorViewModel?()
+        print("Network Error: \(error.localizedDescription)")
     }
     
     func placesCount() -> Int? {

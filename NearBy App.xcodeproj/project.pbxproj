@@ -168,8 +168,7 @@
 				62C2EB4E270E033D00685975 /* Models */,
 				621EEAB9270DBB6A00EB672B /* Constants */,
 				621EEAAF270DA75800EB672B /* Gateways */,
-				621EEAAB270DA6A200EB672B /* View Controllers */,
-				621EEAAC270DA6B900EB672B /* View Models */,
+				621EEAAB270DA6A200EB672B /* Main */,
 				621EEAAD270DA6C400EB672B /* Storyboards */,
 				621EEAAE270DA6D300EB672B /* Resources */,
 				621EEAAA270DA68700EB672B /* Supporting Files */,
@@ -205,13 +204,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		621EEAAB270DA6A200EB672B /* View Controllers */ = {
+		621EEAAB270DA6A200EB672B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				621EEAB2270DB62400EB672B /* Custom Cells */,
-				621EEAB0270DB45300EB672B /* MainViewController.swift */,
+				629B1891271391A100BBA535 /* View Controller */,
+				621EEAAC270DA6B900EB672B /* View Models */,
+				629B186E271078A700BBA535 /* Datasource */,
+				621EEAB2270DB62400EB672B /* Custom Cell */,
 			);
-			path = "View Controllers";
+			path = Main;
 			sourceTree = "<group>";
 		};
 		621EEAAC270DA6B900EB672B /* View Models */ = {
@@ -243,19 +244,18 @@
 		621EEAAF270DA75800EB672B /* Gateways */ = {
 			isa = PBXGroup;
 			children = (
-				629B186E271078A700BBA535 /* Datasource */,
 				629B186C2710547300BBA535 /* Network */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
 		};
-		621EEAB2270DB62400EB672B /* Custom Cells */ = {
+		621EEAB2270DB62400EB672B /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
 				621EEAB3270DB63B00EB672B /* MainTableViewCell.swift */,
 				621EEAB4270DB63B00EB672B /* MainTableViewCell.xib */,
 			);
-			path = "Custom Cells";
+			path = "Custom Cell";
 			sourceTree = "<group>";
 		};
 		621EEAB9270DBB6A00EB672B /* Constants */ = {
@@ -315,6 +315,14 @@
 				629B18862711279B00BBA535 /* XCTestCase.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		629B1891271391A100BBA535 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				621EEAB0270DB45300EB672B /* MainViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		62C2EB4E270E033D00685975 /* Models */ = {
