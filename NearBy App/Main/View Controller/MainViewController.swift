@@ -74,7 +74,6 @@ class MainViewController: UIViewController {
         errorImage.isHidden = false
         self.errorImage.image = UIImage(named: Constants.networkErrorImage)
         self.errorLabel.text = Constants.networkErrorMessage
-        
     }
     
     private func handleNetworkBackToWork() {
