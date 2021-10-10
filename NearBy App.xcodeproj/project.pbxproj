@@ -27,6 +27,8 @@
 		629B18872711279B00BBA535 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B18862711279B00BBA535 /* XCTestCase.swift */; };
 		629B18892711E2B400BBA535 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B18882711E2B400BBA535 /* CellViewModel.swift */; };
 		629B188D2712032100BBA535 /* APISecretConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B188C2712032100BBA535 /* APISecretConstants.swift */; };
+		629B188F271339E200BBA535 /* StubPhoto.json in Sources */ = {isa = PBXBuildFile; fileRef = 629B188E271339E200BBA535 /* StubPhoto.json */; };
+		629B18902713415300BBA535 /* StubPhoto.json in Resources */ = {isa = PBXBuildFile; fileRef = 629B188E271339E200BBA535 /* StubPhoto.json */; };
 		62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4A270E014E00685975 /* PlacesRouter.swift */; };
 		62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4C270E015600685975 /* PlacesRequest.swift */; };
 		62C2EB50270E034400685975 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C2EB4F270E034400685975 /* Place.swift */; };
@@ -80,6 +82,7 @@
 		629B18862711279B00BBA535 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		629B18882711E2B400BBA535 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		629B188C2712032100BBA535 /* APISecretConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISecretConstants.swift; sourceTree = "<group>"; };
+		629B188E271339E200BBA535 /* StubPhoto.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StubPhoto.json; sourceTree = "<group>"; };
 		62C2EB4A270E014E00685975 /* PlacesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRouter.swift; sourceTree = "<group>"; };
 		62C2EB4C270E015600685975 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
 		62C2EB4F270E034400685975 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 		621EEAAB270DA6A200EB672B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				629B186E271078A700BBA535 /* Datasource */,
 				621EEAB2270DB62400EB672B /* Custom Cells */,
 				621EEAB0270DB45300EB672B /* MainViewController.swift */,
 			);
@@ -246,7 +250,6 @@
 		621EEAAF270DA75800EB672B /* Gateways */ = {
 			isa = PBXGroup;
 			children = (
-				629B186E271078A700BBA535 /* Datasource */,
 				629B186C2710547300BBA535 /* Network */,
 				629B186D2710547C00BBA535 /* Location */,
 			);
@@ -334,6 +337,7 @@
 			children = (
 				62C2EB4F270E034400685975 /* Place.swift */,
 				629B187327108E3600BBA535 /* Photo.swift */,
+				629B188E271339E200BBA535 /* StubPhoto.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -455,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				629B18902713415300BBA535 /* StubPhoto.json in Resources */,
 				621EEA87270DA54A00EB672B /* LaunchScreen.storyboard in Resources */,
 				621EEA84270DA54A00EB672B /* Assets.xcassets in Resources */,
 				621EEAB6270DB63B00EB672B /* MainTableViewCell.xib in Resources */,
@@ -593,6 +598,7 @@
 				621EEAB5270DB63B00EB672B /* MainTableViewCell.swift in Sources */,
 				629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */,
 				62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */,
+				629B188F271339E200BBA535 /* StubPhoto.json in Sources */,
 				629B187427108E3600BBA535 /* Photo.swift in Sources */,
 				629B188D2712032100BBA535 /* APISecretConstants.swift in Sources */,
 				629B186B2710545D00BBA535 /* LocationService.swift in Sources */,
