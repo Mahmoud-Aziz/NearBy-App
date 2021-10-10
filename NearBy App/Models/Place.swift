@@ -59,5 +59,5 @@ struct Location: Codable {
 
 // MARK: - LabeledLatLng
 struct LabeledLatLng: Codable {
-    let lat, lng: Double
+    let lat, lng: Double?
 }

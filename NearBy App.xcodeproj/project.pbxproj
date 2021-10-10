@@ -18,7 +18,6 @@
 		621EEAB6270DB63B00EB672B /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621EEAB4270DB63B00EB672B /* MainTableViewCell.xib */; };
 		621EEABB270DBB7800EB672B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621EEABA270DBB7800EB672B /* Constants.swift */; };
 		629B1868271053F400BBA535 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B1867271053F400BBA535 /* MainViewModel.swift */; };
-		629B186B2710545D00BBA535 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B186A2710545D00BBA535 /* LocationService.swift */; };
 		629B1870271078B500BBA535 /* MainTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B186F271078B500BBA535 /* MainTableViewDataSource.swift */; };
 		629B187227108ACC00BBA535 /* PhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187127108ACC00BBA535 /* PhotoRequest.swift */; };
 		629B187427108E3600BBA535 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B187327108E3600BBA535 /* Photo.swift */; };
@@ -71,7 +70,6 @@
 		621EEAB4270DB63B00EB672B /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		621EEABA270DBB7800EB672B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		629B1867271053F400BBA535 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		629B186A2710545D00BBA535 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		629B186F271078B500BBA535 /* MainTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSource.swift; sourceTree = "<group>"; };
 		629B187127108ACC00BBA535 /* PhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequest.swift; sourceTree = "<group>"; };
 		629B187327108E3600BBA535 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 		621EEA79270DA54700EB672B /* NearBy App */ = {
 			isa = PBXGroup;
 			children = (
-				62C2EB51270E14F000685975 /* Extentions */,
 				62C2EB4E270E033D00685975 /* Models */,
 				621EEAB9270DBB6A00EB672B /* Constants */,
 				621EEAAF270DA75800EB672B /* Gateways */,
@@ -248,7 +245,6 @@
 			children = (
 				629B186E271078A700BBA535 /* Datasource */,
 				629B186C2710547300BBA535 /* Network */,
-				629B186D2710547C00BBA535 /* Location */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -278,14 +274,6 @@
 				629B18782710B1F300BBA535 /* Photo */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		629B186D2710547C00BBA535 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				629B186A2710545D00BBA535 /* LocationService.swift */,
-			);
-			path = Location;
 			sourceTree = "<group>";
 		};
 		629B186E271078A700BBA535 /* Datasource */ = {
@@ -336,13 +324,6 @@
 				629B187327108E3600BBA535 /* Photo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		62C2EB51270E14F000685975 /* Extentions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,7 +576,6 @@
 				62C2EB4B270E014E00685975 /* PlacesRouter.swift in Sources */,
 				629B187427108E3600BBA535 /* Photo.swift in Sources */,
 				629B188D2712032100BBA535 /* APISecretConstants.swift in Sources */,
-				629B186B2710545D00BBA535 /* LocationService.swift in Sources */,
 				629B1868271053F400BBA535 /* MainViewModel.swift in Sources */,
 				62C2EB4D270E015600685975 /* PlacesRequest.swift in Sources */,
 				62C2EB50270E034400685975 /* Place.swift in Sources */,

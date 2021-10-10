@@ -30,13 +30,12 @@ class CellViewModel {
         request.getPlacePhoto(id: id, { [weak self] response in
             switch response {
             case .success(let photo):
-                let item = photo.response.photos.items[0]
+                guard let item = photo.response?.photos?.items?[0] else { return }
                 let suffix = item.suffix
                 let prefix = item.itemPrefix
                 let width = item.width
                 let height = item.height
-//                guard let prefix = prefix,let suffix = suffix, let width = width, let height = height else { return }
-                let urlString = "\(prefix)" + "\(width)x\(height)" + "\(suffix)"
+                let urlString = "\(prefix ?? "")" + "\(width ?? 0)x\(height ?? 0)" + "\(suffix ?? "")"
                 self?.url = URL(string: urlString)
                 self?.reloadImageView?()
                 print("Fetched photo successfully")
