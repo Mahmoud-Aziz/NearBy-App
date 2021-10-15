@@ -38,7 +38,7 @@ class CellViewModel {
     }
     
     private func handleNetworkSuccess(result: Photo) {
-        guard let item = result.response?.photos?.items?[0] else { return }
+        guard let item = result.response?.photos?.items?.first else { return }
         let suffix = item.suffix
         let prefix = item.itemPrefix
         let width = item.width
